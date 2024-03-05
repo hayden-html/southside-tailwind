@@ -1,16 +1,66 @@
 ---
+import Frame from "../layouts/Frame.astro";
+import Hero from "@components/home/Hero.astro";
+import Upcoming from "@components/home/Upcoming.astro";
+import Section from "@components/page/Section.astro";
+import TextCarousel from "@components/page/Testimonials.astro";
 
+import ButtonPri from "@components/buttons/Primary.astro";
+
+import homeAbout from "@images/home-about.jpg";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Frame title="Insert Title" desc="Desecritption">
+  <Hero />
+  <Upcoming />
+  <Section
+    image={homeAbout}
+    imageAlt="Hayden focusing on a climber as he is belaying, on a sunny at Portland"
+    classes="blue-theme"
+  >
+    <h3>Southside Story</h3>
+    <p>
+      Passionate about guiding aspiring climbers, Hayden creates a safe and
+      supportive environment where you'll learn the ropes, conquer your fears,
+      and push your skills to new heights. Hayden embarked on a mission to
+      create the best beginner-friendly climbing experiences on the south coast. <span
+        class="hidden md:auto"
+        >After years of coaching and instructing indoors, he brought his
+        expertise outdoors, starting courses at the stunning Isle of Portland,
+        Dorset.
+      </span>
+    </p>
+    <ButtonPri href="/about">More About Us</ButtonPri>
+  </Section>
+</Frame>
+
+<!-- <TextCarousel
+    title="Our Reviews"
+    heading="h4"
+    classes="font-hand"
+    data={{
+      reviews: [
+        {
+          reviewer: "John Doe",
+          review: "This product is great! It exceeded my expectations.",
+        },
+        {
+          reviewer: "Jane Smith",
+          review: "The product is good, but it could be improved with...",
+        },
+        {
+          reviewer: "Mike Jones",
+          review: "Absolutely love this product! Highly recommend.",
+        },
+      ],
+    }}
+  /> -->
+
+<h2>head 2</h2>
+<h3>head 3</h3>
+<h4>head 4</h4>
+<h5>head 5</h5>
+<h6>head 6</h6>
+<p>paragraph</p>
+<small>small</small>
+<p class="lead">lead paragraph</p><h1>Astro Template</h1>

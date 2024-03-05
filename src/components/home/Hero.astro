@@ -1,0 +1,103 @@
+---
+//: add 'book now' button function
+//: colors need to be punchier like in illustrator
+//: video first clip needs frame fix & maybe fade transitions
+
+import ButtonPri from "@components/buttons/Primary.astro";
+---
+
+<div class="hero">
+  <div class="hero-container">
+    <div class="pl-6 lg:pl-10 hero-content">
+      <h1 class="font-pandore text-white text-4xl md:text-5xl lg:text-6xl mb-1">
+        EXPERIENCE<br />ROCK CLIMBING<br /> IN <span class="text-bumble"
+          >DORSET</span
+        >
+      </h1>
+      <div class="buttons">
+        <ButtonPri href="#upcoming-courses" classes="button-shadow lg:text-xl">
+          Book Now
+        </ButtonPri>
+        <ButtonPri href="/courses" classes="button-shadow lg:text-xl">
+          See Courses
+        </ButtonPri>
+      </div>
+    </div>
+    <video
+      autoplay
+      loop
+      src="/media/video/hero-trailer.webm"
+      class="trailer me-sm-auto"
+      muted></video>
+  </div>
+</div>
+
+<style lang="scss">
+  .hero {
+    background-image: linear-gradient(#004fa6, #005bbd);
+    z-index: 0;
+  }
+
+  .hero-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+    // max-height: 80vh;
+  }
+
+  .hero-content {
+    align-content: center;
+    // max-width: fit-content;
+    // padding: 0em 0 0 5vw;
+    white-space: nowrap;
+    margin: 0 auto;
+  }
+
+  .buttons {
+    display: flex;
+    gap: 1em;
+  }
+
+  .trailer {
+    // max-width: 50vw;
+    max-width: clamp(1px, 50%, 700px);
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    margin-right: 0;
+  }
+
+  .hero-font {
+    // font-size: clamp(1.5rem, 1px + 1.5rem, 4rem);
+    font-family: "Pandore", sans-serif;
+    line-height: 110%;
+    color: #fefefe;
+  }
+
+  @media (max-width: 600px) {
+    .hero {
+      flex-direction: column-reverse;
+      height: max-content;
+      max-height: unset;
+      position: relative;
+      .hero-content {
+        position: absolute;
+        z-index: 0;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        margin: 0;
+        padding: 5%;
+        background-color: #005bbd81;
+      }
+    }
+
+    .trailer {
+      max-width: 100%;
+      // max-height: 950px;
+      min-height: 490px;
+      aspect-ratio: 1 / 1.1;
+    }
+  }
+</style>

@@ -1,0 +1,116 @@
+---
+import Heading from "@components/tags/Heading.astro";
+
+import { Image } from "astro:assets";
+
+const { image, imageAlt, classes } = Astro.props;
+
+// const {
+//   image,
+//   imageAlt,
+//   title,
+//   headingLevel,
+//   headingClass,
+//   description,
+//   button,
+//   buttonUrl,
+// } = Astro.props;
+---
+
+<section class=`section ${classes}`>
+  <div class="section-layout">
+    {
+      image && (
+        <div class="frame">
+          <Image src={image} width={500} alt={imageAlt} class="image" />
+        </div>
+      )
+    }
+    <div class="content">
+      <slot />
+    </div>
+    <!-- <div class="content">
+      <Heading headingLevel={headingLevel} classes={headingClass}>
+        {title}
+      </Heading>
+      {(<p>{description || <slot />}</p>)}
+      {
+        button && (
+          <a href={buttonUrl} class="btn">
+            {button}
+          </a>
+        )
+      }
+    </div> -->
+  </div>
+
+  <style lang="scss">
+    .section-layout {
+      display: flex;
+      gap: 1rem;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .layout-info {
+      font-family: "Mulish Variable", sans-serif;
+    }
+
+    .frame {
+      display: block;
+    }
+
+    .image {
+      object-fit: cover;
+      // max-width: fit-content;
+      max-width: 40vw;
+    }
+
+    .content {
+      padding-right: 1rem;
+
+      p {
+        font-weight: 500;
+      }
+    }
+
+    .blue-theme {
+      background-image: linear-gradient(#0066d4, #007afc);
+      color: white;
+
+      .btn {
+        color: #007afc;
+      }
+    }
+
+    @media (max-width: 992px) {
+      .section-layout {
+        flex-direction: column;
+        max-width: 750px;
+
+        // align-items: center;
+      }
+
+      .content {
+        padding-right: 0;
+      }
+
+      .frame {
+        margin: 0 auto;
+        max-width: fit-content;
+      }
+
+      .image {
+        max-width: 100%;
+        object-fit: contain;
+        height: fit-content;
+      }
+
+      .btn {
+        font-size: 18px;
+      }
+    }
+  </style>
+</section>

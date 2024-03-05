@@ -1,0 +1,32 @@
+---
+const { text, href, classes } = Astro.props;
+---
+
+<a
+  href={href}
+  class=`bg-white rounded-lg text-atlantic p-1.5 md:px-2.5 md:py-2 font-bold text-lg ${classes}`
+  ><slot /></a
+>
+
+<style lang="scss">
+  .button-shadow {
+    box-shadow: 0.2em 0.2em #0d5097;
+
+    &:hover {
+      background-color: #fbd40f;
+      color: #004fa6;
+    }
+
+    &:focus {
+      outline: 0;
+      box-shadow: 0.2em 0.2em #ff7bac;
+      transition: 0.2s;
+    }
+
+    &:active {
+      box-shadow: 0.25em 0.25em 0 #03397280;
+      transition: 0.2s;
+      outline: none;
+    }
+  }
+</style>

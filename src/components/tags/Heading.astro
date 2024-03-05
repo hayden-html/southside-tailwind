@@ -1,0 +1,12 @@
+---
+const { title, headingLevel, classes } = Astro.props;
+const HeadingLevel = headingLevel ? "h" + headingLevel : "h2";
+---
+
+{
+  (
+    <HeadingLevel class={classes}>
+      <slot />
+    </HeadingLevel>
+  )
+}

@@ -1,0 +1,33 @@
+//local fonts
+
+@font-face {
+    font-family: 'Pandore', sans-serif;
+    src: url('/fonts/pandore.woff2') format('woff2'), url('/fonts/pandore.woff') format('woff');
+    font-display: swap;
+}
+
+.head-1 {
+    // font-size: calc(.1rem + 3vw);
+    font-size: calc(2rem + 1vw);
+    margin-bottom: .1em;
+
+    @include media-breakpoint-up(sm) {
+        font-size: clamp(1.5rem, 1.25rem + 3vw, 4.5rem);
+    }
+
+}
+
+.head-2 {
+    font-family: 'Mulish Variable', sans-serif;
+    font-weight: 700 !important;
+}
+
+.font-hand {
+    font-family: 'Kalam', cursive;
+}
+
+
+
+.highlight {
+    color: #fbd40f;
+}

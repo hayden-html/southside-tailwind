@@ -1,0 +1,163 @@
+---
+// This nav bar is designed to have the logo on the left, links on the right, a burger menu with a collapsable side nav menu.
+// it is compatible with the Dropdown small component
+// it has hover top / scroll up appearing animations that are unfinished
+// plans to make the page unscrollable when mob nav is active
+
+import MenuItem from "@components/frame/nav/Menu-item.astro";
+
+// add  & logo
+import Socials from "@components/Socials.astro";
+
+import { TbX as Close } from "react-icons/tb";
+import { TbMenu2 as Menu } from "react-icons/tb";
+
+import Dropdown from "@components/frame/Dropdown-small.astro";
+
+const logoAlt = "Southside Climbing";
+
+const bumbleHover = " hover:text-bumble transition-colors duration-300";
+---
+
+<nav class="-mb-1" id="nav">
+  <div
+    class="flex justify-between min-w-full min-h-fill items-center md:items-end pt-4 px-2 pb-2 md:px-4 md:pb-0 z-50 bg-atlantic text-white text-5xl"
+    id="nav-main"
+  >
+    <a href="/" class="h-fit min-w-60 w-9/12 max-w-80">
+      <img
+        src="./media/logos/nav-logo.svg"
+        alt={logoAlt}
+        class="w-72 md:pb-2"
+      />
+    </a>
+    <div id="links" class="">
+      <div
+        id="links-bg"
+        class="fixed transition-opacity opacity-0 bg-atlantic-800/40 top-0 left-0 z-50 md:hidden"
+        onclick="closeMenu()"
+      >
+      </div>
+
+      <div
+        id="links-items"
+        class="fixed top-0 -right-full md:right-0 flex flex-col gap-3 transition-position ease-in duration-300 md:transition-none md:flex-row bg-atlantic-600 p-4 max-w-1/3 z-50 md:z-50 md:p-0 md:bg-transparent md:relative h-full"
+      >
+        <Close className={"ml-auto md:hidden" + bumbleHover} id="close" />
+        <ul class="flex flex-col gap-4 md:flex-row md:gap-8 pr-3">
+          <MenuItem href="/about">About</MenuItem>
+          <MenuItem href="/about">Blog</MenuItem>
+
+          <Dropdown title="Climbing">
+            <MenuItem href="/outdoor-courses" classes="md:pt-1">
+              Outdoor Courses
+            </MenuItem>
+            <MenuItem href="/private-courses">Private Courses</MenuItem>
+            <MenuItem href="/kids-club">Kid's Club</MenuItem>
+            <MenuItem href="/coaching">Coaching</MenuItem>
+            <MenuItem href="/pad-hire">Pad Hire</MenuItem>
+          </Dropdown>
+          <MenuItem href="/contact">Contact</MenuItem>
+        </ul>
+        <Socials
+          classes={"links-socials flex gap-3 items-end pt-3 mt-auto text-5xl md:hidden"}
+          iconClasses={bumbleHover}
+        />
+      </div>
+    </div>
+    <Menu className={"burger md:hidden text-white" + bumbleHover} id="burger" />
+  </div>
+</nav>
+<script lang="js">
+  // nav appear on scroll up
+  // Add extra height to the Component Below
+  // keep track of previous scroll position
+  let prevScrollPos = window.pageYOffset;
+
+  const nav = document.querySelector("#nav");
+  const navMain = document.querySelector("#nav-main");
+  const navMainHeight = navMain.clientHeight;
+
+  const currentNavHeight = () => {
+    nav.style.minHeight = `${navMainHeight}px`;
+  };
+
+  window.addEventListener("DOMContentLoaded", currentNavHeight());
+
+  function navAppear() {
+    navMain.style.transition = `top .5s`;
+    navMain.style.position = "fixed";
+    navMain.style.top = `0`;
+  }
+  window.addEventListener("scroll", function () {
+    // current scroll position
+    const currentScrollPos = window.pageYOffset;
+
+    if (currentScrollPos > prevScrollPos) {
+      // if user scrolls down
+      if (currentScrollPos >= navMainHeight) {
+        navMain.style.transition = `top 1s`;
+        navMain.style.top = `-${navMainHeight}px`;
+      }
+    } else if (currentScrollPos >= navMainHeight * 3) {
+      // if user scrolls up
+      navAppear();
+    }
+
+    prevScrollPos = currentScrollPos;
+  });
+
+  window.addEventListener("mousemove", (event) => {
+    const cursorY = event.clientY;
+    const currentScrollPos = window.pageYOffset;
+
+    if (cursorY < navMainHeight) {
+      if (window.innerWidth > 768 && currentScrollPos > navMainHeight * 3) {
+        navAppear();
+      }
+    }
+  });
+
+  // Open/Close mobile menu
+  const links = document.querySelector("#links-items");
+  const linksBG = document.querySelector("#links-bg");
+  const burger = document.querySelector("#burger");
+  const close = document.querySelector("#close");
+
+  burger.addEventListener("click", () => openMenu());
+  close.addEventListener("click", () => closeMenu());
+
+  function openMenu() {
+    links.classList.replace("-right-full", "right-0");
+    // links.classList.add("duration-400");
+    linksBG.classList.add("size-full", "opacity-100");
+    linksBG.classList.replace("opacity-0", "opacity-100");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeMenu() {
+    // links.classList.remove("duration-400");
+
+    links.classList.replace("right-0", "-right-full");
+    linksBG.classList.replace("opacity-100", "opacity-0");
+    linksBG.classList.remove("size-full");
+    document.body.style.overflow = "";
+  }
+
+  function adjustPanelClass() {
+    const windowWidth = window.innerWidth;
+  }
+
+  window.addEventListener("resize", () => {
+    adjustPanelClass();
+    navMainHeight = navMain.clientHeight;
+    currentNavHeight();
+  });
+</script>
+
+<style lang="scss">
+  .burger,
+  .close {
+    font-size: calc(1.5rem + 3.75vw);
+  }
+</style>

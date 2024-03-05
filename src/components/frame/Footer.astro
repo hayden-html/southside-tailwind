@@ -1,0 +1,42 @@
+---
+import Socials from "@components/Socials.astro";
+---
+
+<footer class="footer">
+  <ul class="links">
+    <li><a href="/privacy-policy.pdf" class="privacy">Privacy Policy</a></li>
+    <li><a href="" class="cookie">Cookie Settings</a></li>
+  </ul>
+  <Socials />
+</footer>
+
+<style lang="scss">
+  .footer {
+    background-color: #003f82;
+    display: flex;
+    justify-content: space-between;
+    padding: calc(1rem + 1vw);
+
+    .links {
+      list-style: none;
+      font-family: "Mullish Variable", sans-serif;
+      font-size: clamp(1.2rem, 1rem + 1vw, 1.2rem);
+      margin-block: 0;
+      padding-left: 0;
+
+      a {
+        color: #fefefe;
+
+        text-decoration: none;
+        list-style-type: none;
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+
+    // @media (max-width: 768px) {
+    //   padding: calc(1rem + 1vw);
+    // }
+  }
+</style>

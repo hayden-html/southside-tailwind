@@ -1,0 +1,42 @@
+---
+import { FaFacebook } from "react-icons/fa";
+import { FaInstagram } from "react-icons/fa";
+
+const { classes, iconClasses } = Astro.props;
+---
+
+<div class={"socials" + (classes && classes)}>
+  <a href="https://www.facebook.com/splashdownpoole/" class="socials-fb">
+    <FaFacebook className={"facebook " + (iconClasses && iconClasses)} />
+  </a>
+  <a
+    href="https://www.instagram.com/splashdownwaterparks/"
+    class="socials-insta"
+  >
+    <FaInstagram className={"instagram " + (iconClasses && iconClasses)} />
+  </a>
+</div>
+
+<style lang="scss">
+  .socials {
+    transition: color 0.3s;
+    a {
+      text-decoration: none;
+      margin-left: 1rem;
+    }
+
+    :first-child {
+      margin-left: 0;
+    }
+    // display: flex;
+    // margin: auto 0 1.6rem;
+    svg {
+      color: #fefefe;
+      font-size: 2.5rem;
+    }
+
+    .instagram {
+      font-size: 2.75rem;
+    }
+  }
+</style>

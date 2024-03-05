@@ -1,0 +1,114 @@
+@import "node_modules/bootstrap/scss/bootstrap";
+
+.btn {
+    // color: #004fa6;
+    font-family: 'Mulish Variable', sans-serif;
+    font-size: clamp(.8rem, .6vw + .8rem, 1.2rem);
+
+
+    text-decoration: none;
+    background-color: #fefefe;
+    padding: 0.3em 0.5em .4em;
+    border: none;
+    border-radius: 0.4em;
+    font-weight: 750;
+    transition: .2s;
+
+    &:hover {
+        background-color: #fbd40f;
+        color: #004fa6;
+        outline: none;
+    }
+
+    &:focus {
+        outline: 1px solid pink;
+    }
+
+    &:active {
+        color: #fefefe;
+        background-color: #fbd40f;
+        box-shadow: 0.25em 0.25em 0 #03397280;
+        font-weight: 750;
+        transition: .2s;
+    }
+}
+
+@mixin btn {
+    font-family: 'Mulish Variable', sans-serif;
+    font-size: clamp(.8rem, .6vw + .8rem, 1.2rem);
+    font-weight: 750;
+    text-decoration: none;
+    padding: 0.3em 0.5em .4em;
+    border: none;
+    border-radius: 7px;
+    transition: .2s;
+
+    :active {
+        outline: none;
+    }
+
+    :focus {
+        outline: none
+    }
+
+}
+
+.btn-1 {
+    @include btn;
+    color: #004fa6;
+    background-color: #fefefe;
+
+    &:hover {
+        background-color: #fbd40f;
+        color: #004fa6;
+    }
+
+    &:focus {
+        outline: 2px solid #FF7BAC;
+    }
+
+    &:active {
+        color: #fefefe;
+        background-color: #fbd40f;
+        box-shadow: 0.25em 0.25em 0 #03397280;
+        transition: .2s;
+        outline: none;
+    }
+
+}
+
+.btn-lg {
+    // font-size: clamp(1rem, .75vw + .8rem, 1.4rem);
+    font-size: calc(14px + .75vw);
+
+    @include media-breakpoint-up(sm) {
+        font-size: clamp(1.25rem, .25rem + 1.25vw, 1.5rem);
+    }
+
+    // @include media-breakpoint-up(xxl) {
+    //     font-size: calc(1.5rem);
+    // }
+}
+
+.btn-out {
+    @include btn;
+    color: #187DC4;
+    border: 3px solid #187DC4;
+    box-sizing: content-box;
+
+    &:hover {
+        color: #004fa6;
+        border-color: #004fa6;
+    }
+
+    &:focus {
+        border-color: #FF7BAC;
+        color: #FF7BAC;
+    }
+
+    &:active {
+        border: none;
+        color: #fefefe;
+        background-color: #004fa6;
+    }
+}

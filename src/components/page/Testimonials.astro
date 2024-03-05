@@ -1,0 +1,215 @@
+---
+const { title, heading, classes, data } = Astro.props;
+const HeadingLevel = heading || "h2";
+const reviews = data.reviews;
+---
+
+<section class={classes && classes}>
+  <div id="testimonialCarousel" class="carousel">
+    {title && <HeadingLevel class="header head-2 h2">{title}</HeadingLevel>}
+
+    <!-- Testimonial items here -->
+    <div class="testimonial-wrapper">
+      <!-- {
+        reviews.forEach((review) => {
+          // Append HTML for each review, using template literals to insert data
+          <div class="testimonial-item">
+            <p>{review.reviewer}</p>
+            <cite>- {review.review}</cite>
+          </div>;
+        })
+      } -->
+      <div class="testimonial-item active">
+        <p>
+          "This product has changed my life! Highly recommend it to anyone
+          looking for a solution."
+        </p>
+        <cite>- John Doe</cite>
+      </div>
+      <div class="testimonial-item">
+        <p>
+          "Excellent customer service and a high-quality product. Five stars!"
+        </p>
+        <cite>- Jane Smith</cite>
+      </div>
+      <div class="testimonial-item">
+        <p>
+          "I've been using this for months now, and it's absolutely fantastic.
+          Works like a charm!"
+        </p>
+        <cite>- Emily Johnson</cite>
+      </div>
+    </div>
+  </div>
+
+  <!-- <button id="prev" class="carousel-btn prev-btn">&lt;</button>
+  <button id="next" class="carousel-btn next-btn">&gt;</button> -->
+  <!-- Navigation bubbles container -->
+  <div class="carousel-nav">
+    <span class="nav-dot active" data-slide="0"></span>
+    <span class="nav-dot" data-slide="1"></span>
+    <span class="nav-dot" data-slide="2"></span>
+    <!-- Add more dots as needed -->
+  </div>
+</section>
+
+<script lang="js">
+  document.addEventListener("DOMContentLoaded", () => {
+    const wrapper = document.querySelector(".testimonial-wrapper");
+    const items = document.querySelectorAll(".testimonial-item");
+    const dots = document.querySelectorAll(".nav-dot");
+    let currentIndex = 0; // Start from the first item
+    let startX = 0;
+    let moving = false;
+
+    // Function to calculate and update the carousel's position
+    const updateCarouselPosition = (animate = true) => {
+      const carouselWidth = document.querySelector(".carousel").offsetWidth;
+      const newPosition = -carouselWidth * currentIndex;
+      wrapper.style.transition = animate
+        ? "transform 0.5s ease-in-out"
+        : "none";
+      wrapper.style.transform = `translateX(${newPosition}px)`;
+    };
+
+    // Update carousel to the correct initial position without animation
+    updateCarouselPosition(false);
+
+    // Function to update which navigation dot is active
+    const updateActiveDot = () => {
+      dots.forEach((dot, index) => {
+        dot.classList.remove("active");
+      });
+      dots[currentIndex].classList.add("active");
+    };
+
+    // Move to the next item
+    const moveNext = () => {
+      if (currentIndex < items.length - 1) {
+        currentIndex++;
+      } else {
+        currentIndex = 0; // Optionally reset to the first item
+      }
+      updateCarouselPosition();
+      updateActiveDot();
+    };
+
+    // Move to the previous item
+    const movePrev = () => {
+      if (currentIndex > 0) {
+        currentIndex--;
+      } else {
+        currentIndex = items.length - 1; // Optionally loop back to the last item
+      }
+      updateCarouselPosition();
+      updateActiveDot();
+    };
+
+    // Event listeners for touch gestures
+    wrapper.addEventListener("touchstart", (e) => {
+      startX = e.touches[0].clientX;
+      moving = true;
+    });
+
+    wrapper.addEventListener("touchmove", (e) => {
+      if (moving) {
+        const currentX = e.touches[0].clientX;
+        const diffX = startX - currentX;
+        if (diffX > 50) {
+          // Swipe left
+          moveNext();
+          moving = false;
+        } else if (diffX < -50) {
+          // Swipe right
+          movePrev();
+          moving = false;
+        }
+      }
+    });
+
+    wrapper.addEventListener("touchend", () => {
+      moving = false;
+    });
+
+    // Add resize event listener to update carousel on window resize
+    window.addEventListener("resize", () => {
+      updateCarouselPosition(false); // Update without animation
+    });
+
+    // Initial update for active dot
+    updateActiveDot();
+  });
+</script>
+<style>
+  section {
+    padding: 1rem;
+
+    .carousel {
+      width: 100%;
+      margin: auto;
+      overflow: hidden;
+      position: relative; /* Ensures child positioning is relative to this container */
+    }
+
+    .header {
+      max-width: 750px;
+      margin: 0 auto;
+    }
+
+    .testimonial-wrapper {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .testimonial-item {
+      flex: 0 0 100%;
+      text-align: center;
+      padding: 20px;
+      box-sizing: border-box;
+      /* Ensure each item is tall enough or contains enough content */
+    }
+
+    .carousel-btn {
+      position: absolute;
+      top: 50%; /* Aligns the button's top edge to the carousel's vertical center */
+      transform: translateY(-50%); /* Centers the button vertically */
+      background-color: #fff;
+      border: 1px solid #ddd;
+      cursor: pointer;
+      padding: 10px 15px;
+      font-size: 24px;
+      color: #333;
+      z-index: 2;
+      border-radius: 50%;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .prev-btn {
+      left: 10px; /* Adjust as needed for spacing from the left edge */
+    }
+
+    .next-btn {
+      right: 10px; /* Adjust as needed for spacing from the right edge */
+    }
+
+    /* Style for the navigation dots */
+    .carousel-nav {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .nav-dot {
+      height: 15px;
+      width: 15px;
+      background-color: #bbb;
+      border-radius: 50%;
+      display: inline-block;
+      margin: 0 5px;
+      cursor: pointer;
+    }
+
+    .nav-dot.active {
+      background-color: #717171;
+    }
+  }
+</style>

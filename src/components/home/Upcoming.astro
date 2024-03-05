@@ -1,0 +1,149 @@
+---
+import { Image } from "astro:assets";
+import Heading from "@components/tags/Heading.astro";
+
+// import learnBelay from "../../images/courses/toprope-course-thumb.jpg";
+import learnBelay from "@images/courses/toprope-course-thumb.jpg";
+
+import { FaLocationDot, FaChildReaching } from "react-icons/fa6";
+import { FaCalendarAlt, FaClock } from "react-icons/fa";
+import { BsTicketFill } from "react-icons/bs";
+---
+
+<div class="upcoming py-2" id="upcoming-courses">
+  <Heading classes="w-full text-center">Upcoming Sessions</Heading>
+  <div class="upcoming-cards">
+    <div class="course flex">
+      <Image
+        src={learnBelay}
+        width="350"
+        quality="max"
+        alt="A beginner wearing a helmet and harness, learning how climbing Portland rock as part of a top rope lesson"
+        class="course-img"
+      />
+      <div class="course-dets">
+        <Heading headingLevel="3">Learn To Belay Course</Heading>
+        <ul class="mb-2">
+          <li>
+            <FaCalendarAlt className="stat-icon" />Tues 18th Feb
+          </li>
+          <li><FaClock className="stat-icon clock" />09:30 - 16:00</li>
+          <li>
+            <FaLocationDot className="stat-icon" /> Isle of Portland
+          </li>
+          <li>
+            <FaChildReaching className="stat-icon" /> Ages 12+
+          </li>
+          <li><BsTicketFill className="stat-icon ticket" />£65/pp</li>
+        </ul>
+        <a href="https://square.link/u/V0FRQndu" class="btn-out course-btn">
+          Book Now
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style lang="scss">
+  .upcoming {
+    color: #1a1a1a;
+  }
+
+  .upcoming-cards {
+    overflow: auto;
+    gap: 2rem;
+    padding: 0.5rem 5vw 1rem;
+    width: fit-content;
+    margin: 0 auto;
+    display: flex;
+  }
+
+  .course {
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    flex-shrink: 0;
+    width: auto;
+    box-shadow: 5px 5px 15px rgb(179, 179, 179);
+
+    &-img {
+      max-width: clamp(1px, 50%, 275px);
+      height: 300px;
+      display: block;
+      object-fit: cover;
+      object-position: 0 80%;
+    }
+
+    &-title {
+      width: max-content;
+    }
+
+    &-dets {
+      display: flex;
+      flex-direction: column;
+      padding: 0.5rem 1.5rem 0 20px;
+
+      ul {
+        font-size: 1.1rem;
+        padding-left: 0;
+        li {
+          display: flex;
+          align-self: center;
+          white-space: nowrap;
+          margin-bottom: 4px;
+        }
+      }
+    }
+
+    &-btn {
+      max-width: fit-content;
+    }
+  }
+
+  .stat-icon {
+    font-size: 1.5rem;
+    width: 2rem;
+    margin-right: 5px;
+    color: #0055b1;
+  }
+
+  .clock {
+    font-size: 22px !important;
+  }
+
+  .ticket {
+    rotate: -45deg;
+  }
+
+  @media (max-width: 768px) {
+    .upcoming-cards {
+      // padding: 0.5rem 0.6rem 1rem;
+      gap: 1rem;
+    }
+    .course {
+      box-shadow: 4px 4px 10px rgb(218, 218, 218);
+      width: fit-content;
+      &-img {
+        width: 45%;
+        // height: auto;
+        object-position: 50% 50%;
+        margin-right: 0.5rem;
+      }
+
+      &-dets {
+        padding: 0.5rem 1rem 0.5rem 0;
+        height: min-content;
+
+        ul {
+          font-size: 16px;
+
+          li {
+            &:before {
+              padding-right: 10px;
+            }
+          }
+        }
+      }
+    }
+  }
+</style>
