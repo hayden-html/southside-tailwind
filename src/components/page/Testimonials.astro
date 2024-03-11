@@ -1,215 +1,225 @@
 ---
-const { title, heading, classes, data } = Astro.props;
+const { title, heading, classes, reviews = [] } = Astro.props;
 const HeadingLevel = heading || "h2";
-const reviews = data.reviews;
+import { LuChevronLeft } from "react-icons/lu";
+import { LuChevronRight } from "react-icons/lu";
 ---
 
-<section class={classes && classes}>
+<section class=`testimonials ${classes}`>
+  {title && <HeadingLevel class="header head-2 h2">{title}</HeadingLevel>}
   <div id="testimonialCarousel" class="carousel">
-    {title && <HeadingLevel class="header head-2 h2">{title}</HeadingLevel>}
-
     <!-- Testimonial items here -->
     <div class="testimonial-wrapper">
-      <!-- {
-        reviews.forEach((review) => {
-          // Append HTML for each review, using template literals to insert data
-          <div class="testimonial-item">
-            <p>{review.reviewer}</p>
-            <cite>- {review.review}</cite>
-          </div>;
+      {
+        reviews.map((review, index) => {
+          // Return JSX elements for each review, using template literals to insert data
+          return (
+            <div
+              class={`testimonial-item *: ${index === 0 ? "active" : ""}`}
+              data-index={index}
+            >
+              <p class="font-cursive font-normal">"{review.text}"</p>
+              <cite class="ml-auto">{review.author}</cite>
+            </div>
+          );
         })
-      } -->
-      <div class="testimonial-item active">
-        <p>
-          "This product has changed my life! Highly recommend it to anyone
-          looking for a solution."
-        </p>
-        <cite>- John Doe</cite>
-      </div>
-      <div class="testimonial-item">
-        <p>
-          "Excellent customer service and a high-quality product. Five stars!"
-        </p>
-        <cite>- Jane Smith</cite>
-      </div>
-      <div class="testimonial-item">
-        <p>
-          "I've been using this for months now, and it's absolutely fantastic.
-          Works like a charm!"
-        </p>
-        <cite>- Emily Johnson</cite>
-      </div>
+      }
     </div>
-  </div>
 
-  <!-- <button id="prev" class="carousel-btn prev-btn">&lt;</button>
-  <button id="next" class="carousel-btn next-btn">&gt;</button> -->
-  <!-- Navigation bubbles container -->
-  <div class="carousel-nav">
-    <span class="nav-dot active" data-slide="0"></span>
-    <span class="nav-dot" data-slide="1"></span>
-    <span class="nav-dot" data-slide="2"></span>
-    <!-- Add more dots as needed -->
+    <div class="controls">
+      <LuChevronLeft id="prev" className="carousel-btn prev-btn text-black" />
+      <!-- Navigation bubbles container -->
+      <div class="carousel-nav">
+        <span class="nav-dot active" data-slide="0"></span>
+        <span class="nav-dot" data-slide="1"></span>
+        <span class="nav-dot" data-slide="2"></span>
+        <!-- Add more dots as needed -->
+      </div>
+      <LuChevronRight id="next" className="carousel-btn next-btn text-black" />
+    </div>
   </div>
 </section>
 
 <script lang="js">
   document.addEventListener("DOMContentLoaded", () => {
+    let currentIndex = 0;
     const wrapper = document.querySelector(".testimonial-wrapper");
     const items = document.querySelectorAll(".testimonial-item");
     const dots = document.querySelectorAll(".nav-dot");
-    let currentIndex = 0; // Start from the first item
+    const totalItems = items.length;
     let startX = 0;
+    let currentX = 0;
     let moving = false;
 
-    // Function to calculate and update the carousel's position
-    const updateCarouselPosition = (animate = true) => {
-      const carouselWidth = document.querySelector(".carousel").offsetWidth;
-      const newPosition = -carouselWidth * currentIndex;
+    // Function to get the carousel's width
+    const getCarouselWidth = () =>
+      document.querySelector(".carousel").offsetWidth;
+
+    // Function to update the carousel's position with or without animation
+    const setCarouselPosition = (distance, animate = true) => {
       wrapper.style.transition = animate
         ? "transform 0.5s ease-in-out"
         : "none";
-      wrapper.style.transform = `translateX(${newPosition}px)`;
+      wrapper.style.transform = `translateX(${distance}px)`;
     };
 
-    // Update carousel to the correct initial position without animation
-    updateCarouselPosition(false);
+    // Adjusted to support infinite scrolling
+    const finalizePosition = () => {
+      const movedBy = currentX - startX;
+      const threshold = getCarouselWidth() * 0.25; // Swipe threshold is 25% of the carousel width
 
-    // Function to update which navigation dot is active
+      if (Math.abs(movedBy) > threshold) {
+        if (movedBy < 0) {
+          currentIndex = (currentIndex + 1) % totalItems; // Wraps to the first item if next from the last
+        } else {
+          currentIndex = (currentIndex - 1 + totalItems) % totalItems; // Wraps to the last item if prev from the first
+        }
+      }
+
+      setCarouselPosition(-currentIndex * getCarouselWidth());
+      updateActiveDot();
+    };
+
+    // Function to update the active dot
     const updateActiveDot = () => {
       dots.forEach((dot, index) => {
-        dot.classList.remove("active");
+        dot.classList.toggle("active", index === currentIndex);
       });
-      dots[currentIndex].classList.add("active");
     };
 
-    // Move to the next item
+    // Touch handlers remain the same
+
+    // Move to the next item with wrapping
     const moveNext = () => {
-      if (currentIndex < items.length - 1) {
-        currentIndex++;
-      } else {
-        currentIndex = 0; // Optionally reset to the first item
-      }
-      updateCarouselPosition();
+      currentIndex = (currentIndex + 1) % totalItems; // Ensures wrapping to the first item
+      setCarouselPosition(-currentIndex * getCarouselWidth());
       updateActiveDot();
     };
 
-    // Move to the previous item
+    // Move to the previous item with wrapping
     const movePrev = () => {
-      if (currentIndex > 0) {
-        currentIndex--;
-      } else {
-        currentIndex = items.length - 1; // Optionally loop back to the last item
-      }
-      updateCarouselPosition();
+      currentIndex = (currentIndex - 1 + totalItems) % totalItems; // Ensures wrapping to the last item
+      setCarouselPosition(-currentIndex * getCarouselWidth());
       updateActiveDot();
     };
 
-    // Event listeners for touch gestures
+    // Add event listeners for swipe actions
     wrapper.addEventListener("touchstart", (e) => {
       startX = e.touches[0].clientX;
       moving = true;
+      wrapper.style.transition = "none";
     });
 
     wrapper.addEventListener("touchmove", (e) => {
-      if (moving) {
-        const currentX = e.touches[0].clientX;
-        const diffX = startX - currentX;
-        if (diffX > 50) {
-          // Swipe left
-          moveNext();
-          moving = false;
-        } else if (diffX < -50) {
-          // Swipe right
-          movePrev();
-          moving = false;
-        }
-      }
+      if (!moving) return;
+      currentX = e.touches[0].clientX;
+      const moveX = currentX - startX - currentIndex * getCarouselWidth();
+      setCarouselPosition(moveX, false);
     });
 
     wrapper.addEventListener("touchend", () => {
       moving = false;
+      finalizePosition();
     });
 
-    // Add resize event listener to update carousel on window resize
+    // Event listeners for next and prev buttons
+    document.getElementById("next").addEventListener("click", moveNext);
+    document.getElementById("prev").addEventListener("click", movePrev);
+
+    // Update carousel position on window resize
     window.addEventListener("resize", () => {
-      updateCarouselPosition(false); // Update without animation
+      setCarouselPosition(-currentIndex * getCarouselWidth());
     });
 
-    // Initial update for active dot
-    updateActiveDot();
+    // Navigation dot clicks for direct access to slides
+    dots.forEach((dot) => {
+      dot.addEventListener("click", (e) => {
+        currentIndex = parseInt(dot.getAttribute("data-slide"));
+        setCarouselPosition(-currentIndex * getCarouselWidth());
+        updateActiveDot();
+      });
+    });
   });
 </script>
-<style>
-  section {
-    padding: 1rem;
+<style lang="scss">
+  .testimonials {
+    padding: 1rem 0;
+  }
+  .header {
+    text-align: center;
+    // max-width: 1000px;
+    width: calc(100%);
+    // padding: 0 5vw;
+    margin: 0 auto;
+  }
+  .carousel {
+    width: 100%;
+    // max-width: 700px;
+    margin: auto;
+    overflow: hidden;
+    position: relative; /* Ensures child positioning is relative to this container */
+  }
 
-    .carousel {
-      width: 100%;
-      margin: auto;
-      overflow: hidden;
-      position: relative; /* Ensures child positioning is relative to this container */
-    }
+  .testimonial-wrapper {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+  }
 
-    .header {
-      max-width: 750px;
+  .testimonial-item {
+    flex: 0 0 100%;
+    text-align: center;
+    padding: 20px 5vw;
+    box-sizing: border-box;
+    /* Ensure each item is tall enough or contains enough content */
+    p {
+      max-width: 1000px;
       margin: 0 auto;
     }
+    @media (max-width: 768px) {
+      padding: 5px;
 
-    .testimonial-wrapper {
-      display: flex;
-      transition: transform 0.5s ease-in-out;
+      cite {
+        margin: 0 auto;
+        display: block;
+        max-width: fit-content;
+      }
+      p {
+        max-width: 100%;
+        width: calc(100% - 4rem);
+      }
     }
+  }
 
-    .testimonial-item {
-      flex: 0 0 100%;
-      text-align: center;
-      padding: 20px;
-      box-sizing: border-box;
-      /* Ensure each item is tall enough or contains enough content */
-    }
+  .carousel-btn {
+    cursor: pointer;
+    font-size: 2rem;
+    color: black;
+  }
 
-    .carousel-btn {
-      position: absolute;
-      top: 50%; /* Aligns the button's top edge to the carousel's vertical center */
-      transform: translateY(-50%); /* Centers the button vertically */
-      background-color: #fff;
-      border: 1px solid #ddd;
-      cursor: pointer;
-      padding: 10px 15px;
-      font-size: 24px;
-      color: #333;
-      z-index: 2;
-      border-radius: 50%;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    }
+  .controls {
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    width: fit-content;
+  }
 
-    .prev-btn {
-      left: 10px; /* Adjust as needed for spacing from the left edge */
-    }
+  /* Style for the navigation dots */
+  .carousel-nav {
+    text-align: center;
+    margin-top: 5px;
+  }
 
-    .next-btn {
-      right: 10px; /* Adjust as needed for spacing from the right edge */
-    }
+  .nav-dot {
+    height: 15px;
+    width: 15px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 0 5px;
+    cursor: pointer;
+  }
 
-    /* Style for the navigation dots */
-    .carousel-nav {
-      text-align: center;
-      margin-top: 20px;
-    }
-
-    .nav-dot {
-      height: 15px;
-      width: 15px;
-      background-color: #bbb;
-      border-radius: 50%;
-      display: inline-block;
-      margin: 0 5px;
-      cursor: pointer;
-    }
-
-    .nav-dot.active {
-      background-color: #717171;
-    }
+  .nav-dot.active {
+    background-color: #717171;
   }
 </style>

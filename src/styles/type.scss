@@ -11,23 +11,13 @@
     font-size: calc(2rem + 1vw);
     margin-bottom: .1em;
 
-    @include media-breakpoint-up(sm) {
-        font-size: clamp(1.5rem, 1.25rem + 3vw, 4.5rem);
-    }
+    // @media(min-width: 640) {
+    //     font-size: clamp(1.5rem, 1.25rem + 3vw, 4.5rem);
+    // }
 
 }
 
 .head-2 {
     font-family: 'Mulish Variable', sans-serif;
     font-weight: 700 !important;
-}
-
-.font-hand {
-    font-family: 'Kalam', cursive;
-}
-
-
-
-.highlight {
-    color: #fbd40f;
 }

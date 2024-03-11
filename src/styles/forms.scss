@@ -1,0 +1,10 @@
+.form {
+
+    input,
+    textarea {
+        &:focus {
+            outline: none !important;
+            border-color: #ffbb00;
+        }
+    }
+}

@@ -1,0 +1,85 @@
+---
+import Frame from "../layouts/Frame.astro";
+import Section from "@components/page/Section.astro";
+import Button from "@components/buttons/Button.astro";
+import Heading from "@components/tags/Heading.astro";
+
+import battleship from "@images/belaying-seb.jpg";
+import haydenHero from "@images/hayden-proj.jpg";
+import peaks from "@images/hayden-peaks.jpg";
+---
+
+<Frame
+  title="About Southside Climbing - Learn about our story and ethos!"
+  desc="Desecritption"
+>
+  <Section
+    image={peaks}
+    imageAlt="Hayden focusing on a climber as he is belaying, on a sunny at Portland"
+    classes="hero-theme"
+  >
+    <Heading headingLevel="1">
+      About <span class="text-bumble">US</span>
+    </Heading>
+    <p>
+      Hayden created Southside Climbing in 2021, as soon as he qualified as a
+      Rock Climbing Instructor. He loves sharing his passion of climbing with
+      others and aims to make the sport more accessible to beginners.
+    </p>
+  </Section>
+  <Section
+    image={haydenHero}
+    imageAlt="Hayden focusing on a climber as he is belaying, on a sunny at Portland"
+    classes=""
+  >
+    <h3 class="h2 m-0">Hayden's Background</h3>
+    <p>
+      When Hayden was 16, he wasn't the sporty type, until he discovered his
+      local bouldering wall. <span class="hidden md:inline"
+        >Then once he was old enough, at 18, he became an apprentice activity
+        instructor. He's not stopped instructing for the last 6 years.
+      </span>
+    </p>
+  </Section>
+  <Section
+    image={battleship}
+    imageAlt="Hayden focusing on a climber as he is belaying, on a sunny at Portland"
+    classes="blue-theme blocked"
+  >
+    <h3 class="h2 m-0">Our Ethos</h3>
+    <p class="mb-2">
+      The courses at Southside Climbing are run with the community in mind. Each
+      session has a small ratio of 6 climbers per instructor, this is to ensure
+      each participant has plenty of tuition and climbing time, but we also want
+      to avoid overcrowding the crags.
+    </p>
+    <p class="mb-2">
+      We're also committed to combating climate change as we operate. We use
+      eco-friendly equipment sourced from sustainable manufacturers and plant
+      tree's for every climbing ticket sold. When you climb with us, you're not
+      only improving your skills but also supporting a business that actively
+      works to protect the environment.
+    </p>
+    <p>
+      At Southside Climbing, we embrace diversity and believe that rock climbing
+      is for everyone. We foster an inclusive environment where all individuals,
+      regardless of background or ability, feel welcome and supported. Our
+      instructor adapts to different learning styles and physical abilities,
+      ensuring each climber can progress at their own pace.
+    </p>
+  </Section>
+  <Section
+    image={battleship}
+    imageAlt="Hayden focusing on a climber as he is belaying, on a sunny at Portland"
+    classes=""
+  >
+    <h3 class="h2 m-0">Recruitment</h3>
+    <p class="">
+      We're always seeking freelance instructors to join our team. Whether
+      you're interested in training to become an instructor or looking for work
+      throughout the season, we'd love to hear from you. Please get in touch to
+      discuss potential opportunities at Southside Climbing!
+    </p>
+    <a href="/contact" class="btn">Send Your CV</a>
+  </Section>
+</Frame>

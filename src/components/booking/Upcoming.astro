@@ -1,0 +1,38 @@
+---
+import { Image } from "astro:assets";
+import Heading from "@components/tags/Heading.astro";
+
+// import learnBelay from "../../images/courses/toprope-course-thumb.jpg";
+---
+
+<div class="upcoming pt-2" id="upcoming-courses">
+  <Heading classes="w-full text-center font-medium font-noto-sans h2 mb-0">
+    Upcoming Sessions
+  </Heading>
+  <div class="upcoming-cards">
+    <slot />
+  </div>
+</div>
+
+<style lang="scss">
+  .upcoming {
+    color: #1a1a1a;
+    width: 100%;
+    background-color: #f5f5f5;
+  }
+
+  .upcoming-cards {
+    max-width: 100%;
+    overflow-x: scroll;
+    gap: 2rem;
+    display: flex;
+    align-items: center;
+  }
+
+  @media (max-width: 768px) {
+    .upcoming-cards {
+      padding: 0rem 1em 1rem;
+      gap: 1.5rem;
+    }
+  }
+</style>

@@ -1,0 +1,32 @@
+---
+import Frame from "../layouts/Frame.astro";
+import Section from "@components/page/Section.astro";
+import Form from "@components/ContactForm.jsx";
+// import Web from "@components/ContactForm.jsx";
+import Heading from "@components/tags/Heading.astro";
+
+import hero from "@images/battleship-block.jpg";
+import battleship from "@images/belaying-seb.jpg";
+---
+
+<Frame title="Southside Climbing" desc="Desecritption">
+  <Section image={hero} imageAlt="" classes="hero-theme">
+    <Heading headingLevel="1">
+      Contact <span class="text-bumble">Us</span>
+    </Heading>
+    <p>
+      If you have any questions, please don't hesitate to get in touch. You can
+      send us an email or fill out the contact form below. We typically respond
+      to emails within 2 working days.
+    </p>
+  </Section>
+
+  <div class="section blue-theme">
+    <div class="section-layout">
+      <div class="contact-dets w-1/2">
+        <h2 class="h1">Send us a Message</h2>
+      </div>
+      <Form />
+    </div>
+  </div>
+</Frame>

@@ -27,6 +27,7 @@ export default {
 				'pandore': ['"Pandore"', ...defaultTheme.fontFamily.sans],
 				'noto-sans': ['"Noto Sans JP Variable"', ...defaultTheme.fontFamily.sans],
 				'mullish': ['"Mulish Variable"', ...defaultTheme.fontFamily.sans],
+				'cursive': ["'Kalam', cursive", ...defaultTheme.fontFamily.sans]
 			},
 			transitionProperty: {
 				'height': 'height',

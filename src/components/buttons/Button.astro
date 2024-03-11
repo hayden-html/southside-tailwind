@@ -1,0 +1,50 @@
+---
+const { text, href, classes } = Astro.props;
+---
+
+<a
+  href={href}
+  class=`rounded-lg font-noto-sans p-3 pt-2 md:px-2.5 md:py-2 font-bold transition-colors w-fit h6 ${classes}`
+  ><slot /></a
+>
+
+<style lang="scss">
+  .hero {
+    border: none;
+    box-shadow: 0.2em 0.2em #0d5097;
+    background-color: white;
+
+    &:hover {
+      background-color: #fbd40f;
+      color: #004fa6;
+    }
+
+    &:focus {
+      box-shadow: 0.2em 0.2em #ff7babe8;
+      transition: 0.2s;
+    }
+
+    &:active {
+      box-shadow: 0.25em 0.25em 0 #03397280;
+      transition: 0.2s;
+      outline: none;
+      color: white;
+      background-color: #fbd40f;
+    }
+  }
+
+  @mixin outline {
+    border: solid 4px;
+  }
+
+  .outline-atlantic {
+    @include outline;
+    border-color: #004fa6;
+
+    &:hover,
+    &:active {
+      background-color: #004fa6;
+      color: white;
+    }
+  }
+</style>

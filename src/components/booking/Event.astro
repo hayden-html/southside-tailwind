@@ -1,0 +1,138 @@
+---
+import { Image } from "astro:assets";
+
+import { FaLocationDot, FaChildReaching } from "react-icons/fa6";
+import { FaCalendarAlt, FaClock } from "react-icons/fa";
+import { BsTicketFill } from "react-icons/bs";
+
+import Button from "@components/buttons/Button.astro";
+
+const {
+  classes,
+  image,
+  imageAlt,
+  title,
+  heading,
+  date,
+  time,
+  place,
+  age,
+  price,
+  href,
+} = Astro.props;
+---
+
+<div class={`course flex ${classes}`}>
+  <Image
+    src={image}
+    width="350"
+    quality="max"
+    alt={imageAlt || title}
+    class="course-img"
+  />
+  <div class="course-dets">
+    <h3 class="h5 font-semibold font-noto-sans">{title}</h3>
+    <ul class="font-medium h5 mb-0">
+      <li>
+        <FaCalendarAlt className="stat-icon" />{date}
+      </li>
+      <li><FaClock className="stat-icon clock" />{time}</li>
+      <li>
+        <FaLocationDot className="stat-icon" />{place}
+      </li>
+      <li>
+        <FaChildReaching className="stat-icon" />Ages {age}+
+      </li>
+      <li><BsTicketFill className="stat-icon ticket" />{price}</li>
+    </ul>
+    <a href={href} class="btn-outline-atlantic">Book Now</a>
+  </div>
+</div>
+<style lang="scss">
+  .course {
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    flex-shrink: 0;
+    width: fit-content;
+    box-shadow: 5px 5px 15px rgb(179, 179, 179);
+    align-self: center;
+    // place-content: ;
+    margin: 0.5rem 2rem 1rem;
+
+    margin: 1rem auto;
+
+    &-img {
+      width: clamp(1px, 50%, 275px);
+      height: 300px;
+      aspect-ratio: 1 / 1;
+      display: block;
+      object-fit: cover;
+      object-position: 0 80%;
+    }
+
+    &-dets {
+      display: flex;
+      flex-direction: column;
+      padding: 0.5rem 1.5rem 0 20px;
+
+      ul {
+        font-size: 1.1rem;
+        padding-left: 0;
+        li {
+          display: flex;
+          align-self: center;
+          white-space: nowrap;
+          margin-bottom: 8px;
+        }
+      }
+    }
+  }
+
+  .stat-icon {
+    font-size: 1.5rem;
+    width: 2rem;
+    margin-right: 5px;
+    color: #0055b3;
+  }
+
+  .clock {
+    font-size: 22px !important;
+  }
+
+  .ticket {
+    rotate: -45deg;
+  }
+
+  @media (max-width: 600px) {
+    .course {
+      box-shadow: 4px 4px 10px rgb(218, 218, 218);
+      width: 300px;
+      max-width: 80dvw;
+      display: block;
+      &-img {
+        height: auto;
+        aspect-ratio: 1 / 0.75;
+        width: 100%;
+        object-position: 100% 60%;
+      }
+
+      &-dets {
+        padding: 0.5rem 1rem 0.5rem;
+        height: min-content;
+
+        ul {
+          font-size: 16px;
+
+          li {
+            line-height: 16px;
+            align-items: center;
+            // &:before {
+            //   padding-right: 10px;
+            // }
+          }
+        }
+      }
+    }
+  }
+</style>

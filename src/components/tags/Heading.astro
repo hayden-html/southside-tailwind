@@ -5,7 +5,11 @@ const HeadingLevel = headingLevel ? "h" + headingLevel : "h2";
 
 {
   (
-    <HeadingLevel class={classes}>
+    <HeadingLevel
+      class={
+        HeadingLevel == "h1" ? "text-4xl md:text-5xl lg:text-6xl mb-1" : classes
+      }
+    >
       <slot />
     </HeadingLevel>
   )

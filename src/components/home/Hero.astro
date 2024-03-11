@@ -3,43 +3,41 @@
 //: colors need to be punchier like in illustrator
 //: video first clip needs frame fix & maybe fade transitions
 
-import ButtonPri from "@components/buttons/Primary.astro";
+import ButtonPri from "@components/buttons/Button.astro";
 ---
 
-<div class="hero">
+<section class="hero-theme hero">
   <div class="hero-container">
-    <div class="pl-6 lg:pl-10 hero-content">
-      <h1 class="font-pandore text-white text-4xl md:text-5xl lg:text-6xl mb-1">
+    <div class="hero-content">
+      <h1 class="display-5 mb-1 font-pandore">
         EXPERIENCE<br />ROCK CLIMBING<br /> IN <span class="text-bumble"
           >DORSET</span
         >
       </h1>
       <div class="buttons">
-        <ButtonPri href="#upcoming-courses" classes="button-shadow lg:text-xl">
-          Book Now
-        </ButtonPri>
-        <ButtonPri href="/courses" classes="button-shadow lg:text-xl">
-          See Courses
-        </ButtonPri>
+        <a href="#upcoming-courses" class="btn h5"> Book Now</a>
+        <a href="/courses" class="btn h5"> See Courses</a>
       </div>
     </div>
     <video
       autoplay
       loop
       src="/media/video/hero-trailer.webm"
-      class="trailer me-sm-auto"
+      class="trailer"
       muted></video>
   </div>
-</div>
+</section>
 
 <style lang="scss">
   .hero {
     background-image: linear-gradient(#004fa6, #005bbd);
+    padding: 0;
     z-index: 0;
   }
 
   .hero-container {
     display: flex;
+    gap: 1rem;
     justify-content: space-between;
     align-items: center;
     max-width: 1400px;
@@ -62,20 +60,13 @@ import ButtonPri from "@components/buttons/Primary.astro";
 
   .trailer {
     // max-width: 50vw;
-    max-width: clamp(1px, 50%, 700px);
+    max-width: clamp(1px, 50%, 600px);
     aspect-ratio: 1 / 1;
     object-fit: cover;
     margin-right: 0;
   }
 
-  .hero-font {
-    // font-size: clamp(1.5rem, 1px + 1.5rem, 4rem);
-    font-family: "Pandore", sans-serif;
-    line-height: 110%;
-    color: #fefefe;
-  }
-
-  @media (max-width: 600px) {
+  @media (max-width: 640px) {
     .hero {
       flex-direction: column-reverse;
       height: max-content;

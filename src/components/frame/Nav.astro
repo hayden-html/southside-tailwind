@@ -19,12 +19,12 @@ const logoAlt = "Southside Climbing";
 const bumbleHover = " hover:text-bumble transition-colors duration-300";
 ---
 
-<nav class="-mb-1" id="nav">
+<nav class="" id="nav">
   <div
-    class="flex justify-between min-w-full min-h-fill items-center md:items-end pt-4 px-2 pb-2 md:px-4 md:pb-0 z-50 bg-atlantic text-white text-5xl"
+    class="flex justify-between min-w-full min-h-fill items-center md:items-end pt-2 px-2 pb-2 md:px-4 md:pb-0 md:pt-3 z-50 bg-atlantic text-white text-5xl relative nav-main"
     id="nav-main"
   >
-    <a href="/" class="h-fit min-w-60 w-9/12 max-w-80">
+    <a href="/" class="h-fit md:min-w-60 w-9/12 max-w-80">
       <img
         src="./media/logos/nav-logo.svg"
         alt={logoAlt}
@@ -41,7 +41,7 @@ const bumbleHover = " hover:text-bumble transition-colors duration-300";
 
       <div
         id="links-items"
-        class="fixed top-0 -right-full md:right-0 flex flex-col gap-3 transition-position ease-in duration-300 md:transition-none md:flex-row bg-atlantic-600 p-4 max-w-1/3 z-50 md:z-50 md:p-0 md:bg-transparent md:relative h-full"
+        class="fixed top-0 -right-full md:right-0 flex flex-col gap-3 transition-none ease-in duration-300 md:transition-none md:flex-row bg-atlantic-600 p-4 max-w-1/3 z-50 md:z-50 md:p-0 md:bg-transparent md:relative h-full"
       >
         <Close className={"ml-auto md:hidden" + bumbleHover} id="close" />
         <ul class="flex flex-col gap-4 md:flex-row md:gap-8 pr-3">
@@ -76,47 +76,46 @@ const bumbleHover = " hover:text-bumble transition-colors duration-300";
 
   const nav = document.querySelector("#nav");
   const navMain = document.querySelector("#nav-main");
-  const navMainHeight = navMain.clientHeight;
+  let navMainHeight;
 
-  const currentNavHeight = () => {
-    nav.style.minHeight = `${navMainHeight}px`;
-  };
-
-  window.addEventListener("DOMContentLoaded", currentNavHeight());
-
-  function navAppear() {
-    navMain.style.transition = `top .5s`;
-    navMain.style.position = "fixed";
-    navMain.style.top = `0`;
-  }
-  window.addEventListener("scroll", function () {
-    // current scroll position
-    const currentScrollPos = window.pageYOffset;
-
-    if (currentScrollPos > prevScrollPos) {
-      // if user scrolls down
-      if (currentScrollPos >= navMainHeight) {
-        navMain.style.transition = `top 1s`;
-        navMain.style.top = `-${navMainHeight}px`;
-      }
-    } else if (currentScrollPos >= navMainHeight * 3) {
-      // if user scrolls up
-      navAppear();
-    }
-
-    prevScrollPos = currentScrollPos;
+  window.addEventListener("DOMContentLoaded", () => {
+    nav.clientHeight == navMain.clientHeight;
+    navMainHeight == navMain.clientHeight;
   });
 
-  window.addEventListener("mousemove", (event) => {
-    const cursorY = event.clientY;
-    const currentScrollPos = window.pageYOffset;
+  // function navAppear() {
+  //   navMain.style.transition = `top .5s`;
+  //   navMain.style.position = "fixed";
+  //   navMain.style.top = `0`;
+  // }
+  // window.addEventListener("scroll", function () {
+  //   // current scroll position
+  //   const currentScrollPos = window.pageYOffset;
 
-    if (cursorY < navMainHeight) {
-      if (window.innerWidth > 768 && currentScrollPos > navMainHeight * 3) {
-        navAppear();
-      }
-    }
-  });
+  //   if (currentScrollPos > prevScrollPos) {
+  //     // if user scrolls down
+  //     if (currentScrollPos >= navMainHeight) {
+  //       navMain.style.transition = `top 1s`;
+  //       navMain.style.top = `-${navMainHeight}px`;
+  //     }
+  //   } else if (currentScrollPos >= navMainHeight * 3) {
+  //     // if user scrolls up
+  //     navAppear();
+  //   }
+
+  //   prevScrollPos = currentScrollPos;
+  // });
+
+  // window.addEventListener("mousemove", (event) => {
+  //   const cursorY = event.clientY;
+  //   const currentScrollPos = window.pageYOffset;
+
+  //   if (cursorY < navMainHeight) {
+  //     if (window.innerWidth > 768 && currentScrollPos > navMainHeight * 3) {
+  //       navAppear();
+  //     }
+  //   }
+  // });
 
   // Open/Close mobile menu
   const links = document.querySelector("#links-items");
@@ -128,30 +127,25 @@ const bumbleHover = " hover:text-bumble transition-colors duration-300";
   close.addEventListener("click", () => closeMenu());
 
   function openMenu() {
+    links.classList.replace("transition-none", "transition-position");
     links.classList.replace("-right-full", "right-0");
-    // links.classList.add("duration-400");
     linksBG.classList.add("size-full", "opacity-100");
     linksBG.classList.replace("opacity-0", "opacity-100");
     document.body.style.overflow = "hidden";
   }
 
   function closeMenu() {
-    // links.classList.remove("duration-400");
-
+    links.classList.replace("transition-position", "transition-none");
     links.classList.replace("right-0", "-right-full");
+
     linksBG.classList.replace("opacity-100", "opacity-0");
     linksBG.classList.remove("size-full");
     document.body.style.overflow = "";
   }
 
-  function adjustPanelClass() {
-    const windowWidth = window.innerWidth;
-  }
-
   window.addEventListener("resize", () => {
-    adjustPanelClass();
+    nav.clientHeight == navMain.clientHeight;
     navMainHeight = navMain.clientHeight;
-    currentNavHeight();
   });
 </script>
 
