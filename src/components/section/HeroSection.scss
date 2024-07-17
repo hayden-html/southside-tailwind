@@ -1,0 +1,131 @@
+.hero-section {
+    background-color: #004fa6;
+    color: white;
+    margin: 0;
+    padding: 0;
+
+    p,
+    ol,
+    ul {
+        font-family: "Mulish Variable", ui-sans-serif, system-ui, sans-serif,
+            "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+            "Noto Color Emoji";
+        font-weight: 600;
+    }
+
+
+    .section-layout {
+        display: flex;
+        margin: 0 auto;
+        justify-content: space-between;
+        padding: 0 0 0 2rem;
+        max-width: 1200px;
+
+
+
+        @media (max-width: 767.99px) {
+            flex-direction: column;
+            padding: 0;
+        }
+
+        @media (min-width: 768px) {
+            align-items: center;
+            flex-direction: row-reverse;
+            justify-content: space-evenly;
+            max-width: 1100px;
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            gap: 0 !important;
+            // margin: 0 auto;
+            padding: 24px 0;
+
+            @media (max-width: 767.99px) {
+                padding: 2rem 5vw;
+            }
+
+            @media (min-width: 768px) {
+                max-width: clamp(300px, 60%, 468px);
+            }
+        }
+
+        .image {
+            width: 766px;
+            height: 100%;
+            object-fit: cover;
+
+            @media (max-width: 767.99px) {
+                aspect-ratio: 5 / 3 !important;
+                max-height: 600px;
+
+            }
+
+            @media (min-width: 768px) {
+                max-width: clamp(300px, 30vw, 600px);
+                min-height: 300px;
+            }
+        }
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-family: "Pandore", ui-sans-serif, system-ui, sans-serif,
+            "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+        color: white;
+
+        span {
+            color: #fbd40f;
+        }
+    }
+
+    .spec {
+        font-size: 16px;
+        gap: 0.75rem;
+        margin-bottom: 8px;
+
+        li {
+            gap: 0.25em;
+        }
+
+        svg {
+            color: white;
+        }
+
+        @media (min-width: 768px) {
+            font-size: 20px;
+        }
+    }
+}
+
+.hero-section {
+    .btn {
+        // @include button;
+        background-color: white;
+        color: #004FA6;
+        box-shadow: 0.2em 0.2em #0d5097;
+
+        &:hover {
+            background-color: #fbd40f;
+            color: #004fa6;
+        }
+
+        &:focus {
+            box-shadow: 0.2em 0.2em #ff7babe8;
+            transition: 0.2s;
+        }
+
+        &:active {
+            box-shadow: 0.25em 0.25em 0 #03397280;
+            transition: 0.2s;
+            background-color: #fbd40f;
+            box-shadow: 0.2em 0.2em #ff7babe8;
+
+        }
+    }
+}

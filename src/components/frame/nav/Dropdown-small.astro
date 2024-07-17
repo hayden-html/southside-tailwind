@@ -1,0 +1,22 @@
+---
+import MenuItem from "@components/frame/nav/Menu-item.astro";
+
+// this dropdown expands in the mob menu
+export interface Props {
+  title: string;
+  classes?: string;
+  href?: string;
+}
+
+const { title, classes, href } = Astro.props;
+---
+
+<div class=`dropdown dropdown-animation ${classes}`>
+  <MenuItem href={href} classes="hidden md:block peer">{title}</MenuItem>
+  <ul
+    id="dropdown-list"
+    class="flex flex-col gap-4 md:gap-1 md:px-3 md:-ml-3 md:overflow-hidden md:transition-max-h md:duration-300 md:ease-in hover:ease-out md:absolute md:max-h-0 w-max peer-hover:md:max-h-96 md:hover:max-h-96 md:bg-atlantic-600"
+  >
+    <slot />
+  </ul>
+</div>

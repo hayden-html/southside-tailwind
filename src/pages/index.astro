@@ -4,51 +4,60 @@ import Hero from "@components/home/Hero.astro";
 import Upcoming from "@components/booking/Upcoming.astro";
 import Event from "@components/booking/Event.astro";
 import Reviews from "@components/page/Testimonials.astro";
-import Section from "@components/page/Section.astro";
-import Button from "@components/buttons/Button.astro";
-
-import homeAbout from "@images/home-about.jpg";
-
-import learnBelay from "@images/courses/toprope-course-thumb.jpg";
+import Section from "@components/section/Section.astro";
 
 const reviewData = [
   {
     text: "We had a top rope session with Hayden in Portland for 4 people. Hayden made it very enjoyable for all participants, he is very attentive, helpful and genuinely interested in coaching people. We felt very safe and Hayden answered all our questions. Will be definitely coming back soon!",
-    author: "Irina Sidorkina - July 2024",
+    author: "Irina Sidorkina - July 2023",
   },
   {
     text: "It turned out to be an amazing day, well worth the money. After being shown the ropes (no pun intended), learning our knots and being given some amazing guidance and advice we came out of it confident we knew what we were doing and ready to book another session.",
-    author: "Jamie De Vivo, April 2024",
+    author: "Jamie De Vivo, April 2023",
   },
   {
     text: "We had a great day out with Hayden! Both of us were quite new to outdoor climbing. Hayden was very supportive and patient. He took us to a spot with lots of fun routes and amazing view. Highly recommended!",
-    author: "Jo Yu - July 2024",
+    author: "Jo Yu - July 2023",
   },
-  // Add more review objects here...
 ];
 ---
 
-<Frame title="Southside Climbing" desc="Desecritption">
+<Frame
+  title="Southside Climbing"
+  metaTitle="Southside Climbing - Rock Climbing Courses in Dorset"
+  description="We offer the best range of climbing courses on the jurassic coast. Our sessions are great for beginners of the sport and adventure holiday activites."
+>
   <Hero />
-  <Upcoming>
+  <Upcoming title="Upcoming Courses">
     <Event
-      image={learnBelay}
-      alt="A beginner wearing a helmet and harness, learning how climbing Portland rock as part of a top rope lesson"
+      image="/media/images/cuttings-bower.jpg"
+      alt="A young climber in a colorful helmet and harness reaches for a handhold on a steep limestone cliff face, showcasing the focus, technique and equipment involved in rock climbing."
       title="Learn To Belay Course"
-      date="Sat 11th May 2023"
-      time="09:30 - 16:30"
+      date="Sat 4th May 2023"
+      time="09:30 - 15:30"
       place="Isle of Portland"
-      age="16"
+      age="18"
       price="£60/pp"
       href="/courses/learn-to-belay"
     />
+    <Event
+      image="/media/images/kids-club-proj.jpg"
+      alt="A young climber in a colorful helmet and harness reaches for a handhold on a steep limestone cliff face, showcasing the focus, technique and equipment involved in rock climbing."
+      title="Kids Club"
+      date="Fridays, after school"
+      time="18:30 - 20:00"
+      place="The Project, Poole"
+      age="9-12"
+      price="£11.50/pp"
+      href="/courses/AECC"
+    />
   </Upcoming>
   <Section
-    image={homeAbout}
+    image="/media/images/hayden-battleship.jpg"
     imageAlt="Hayden focusing on a climber as he is belaying, on a sunny at Portland"
     classes="blue-theme"
   >
-    <h3 class="h2 m-0">Southside Story</h3>
+    <h2 class="h3 text-medium m-0">Southside Story</h2>
     <p>
       Passionate about guiding aspiring climbers, Hayden creates a safe and
       supportive environment where you'll learn the ropes, conquer your fears,
@@ -63,5 +72,5 @@ const reviewData = [
     <a href="/about" class="btn">More About Us</a>
   </Section>
 
-  <Reviews title="Our Reviews" heading="h5" classes="" reviews={reviewData} />
+  <Reviews title="Our Reviews" classes="" reviews={reviewData} />
 </Frame>

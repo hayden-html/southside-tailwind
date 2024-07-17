@@ -1,0 +1,25 @@
+---
+import { Image } from "astro:assets";
+
+// import Heading from "@components/tags/Heading.astro";
+// import { Image } from "astro:assets";
+
+const { image, imageAlt, classes } = Astro.props;
+---
+
+  <section class={"section " + classes}>
+    <div class={"section-layout"}>
+      {
+        image && (
+            <img
+              src={image}
+              alt={imageAlt}
+              class=`image `
+            />
+        )
+      }
+      <div class="content">
+        <slot />
+      </div>
+    </div>
+  </section>

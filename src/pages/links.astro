@@ -1,0 +1,126 @@
+---
+import BaseHead from "@components/frame/head/Head.astro";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title="Directory" description="" metaTitle="" />
+    <meta name="robots" content="noindex" />
+  </head>
+  <body>
+    <div class="block">
+      <a class="header" href="/">
+        <img class="logo" src="/media/logo.svg" alt="logo" />
+        <img
+          class="title"
+          src="/media/logo-text-white.svg"
+          alt="Souhtside Climbing"
+        />
+      </a>
+
+      <div class="dir">
+        <a class="link" href="/">Go To Website</a>
+        <a class="link" href="/courses/learn-to-belay/">Learn To Belay</a>
+        <a class="link" href="/courses/kids-club/">Kids Club</a>
+
+        <div class="social-links">
+          <a
+            href="https://www.facebook.com/southsideclimbing/"
+            class="social-fb"
+            ><img src="/media/icons/facebook.svg" alt="facebook logo" /></a
+          >
+          <a
+            href="https://www.instagram.com/southsideclimbing/"
+            class="social-insta"
+            ><img src="/media/icons/instagram.svg" alt="facebook logo" /></a
+          >
+        </div>
+      </div>
+    </div>
+    <style lang="scss">
+      * {
+        margin: 0;
+      }
+
+      body {
+        height: 100vh;
+        height: 100svh;
+        min-width: 320px;
+        background-image: linear-gradient(
+          240deg,
+          rgb(252, 164, 199) 0%,
+          rgb(76, 196, 236) 100%
+        );
+      }
+
+      .block {
+        display: block;
+        margin: 50px;
+        padding: 20px;
+        height: 90svh;
+        width: 80%;
+        border-radius: 25px;
+        margin: 10px auto;
+
+        .header {
+          display: block;
+          width: max-content;
+          margin: 0 auto 25px;
+          text-align: center;
+          .logo {
+            width: 100px;
+            margin: 0 auto;
+            filter: drop-shadow(0px 5px 10px rgba(27, 27, 27, 0.082));
+          }
+          .title {
+            display: block;
+            margin-top: 5px;
+            height: 26px;
+            @media (max-width: 360px) {
+              height: 25px;
+            }
+          }
+        }
+
+        .dir {
+          margin: 0 auto;
+          display: block;
+          width: min-content;
+          .link {
+            box-shadow: 0px 5px 10px rgba(27, 27, 27, 0.226);
+
+            display: block;
+            width: 280px;
+            // width: 80%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            background-color: whitesmoke;
+            font-size: 20px;
+            text-align: center;
+            color: rgb(22, 22, 22);
+            text-decoration: none;
+            &:active {
+              color: white;
+              background-image: linear-gradient(
+                70deg,
+                rgb(233, 95, 150) 0%,
+                rgb(218, 95, 223) 100%
+              );
+            }
+          }
+        }
+
+        .social-links {
+          a {
+            margin-right: 20px;
+            img {
+              width: 50px;
+            }
+          }
+        }
+      }
+    </style>
+  </body>
+</html>

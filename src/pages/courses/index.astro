@@ -1,0 +1,103 @@
+---
+import Frame from "@layouts/Frame.astro";
+import Card from "@components/courses/Course-card.astro";
+import HeroSection from "@components/section/HeroSection.astro";
+---
+
+<Frame
+  title="Courses - Southside Climbing"
+  metaTitle="Courses - Southside Climbing"
+  description=`We offer a variety of different session here in Dorset, weather you'd like
+to experince what it's like to climb on the Jurassic Coast, or you'd like
+to learn the essential skills.`
+>
+  <HeroSection
+    image="/media/images/bonsai-lowering.jpg"
+    imageAlt="A rock climber in a helmet and harness scales a cliff using ropes, demonstrating proper technique in an outdoor setting."
+    classes="hero-theme"
+  >
+    <h1 class="text-h1">Our <span class="text-bumble">Courses</span></h1>
+    <p class="text-lead">
+      We offer a variety of different session here in Dorset, weather you'd like
+      to experince what it's like to climb on the Jurassic Coast, or you'd like
+      to learn the essential skills.
+    </p>
+  </HeroSection>
+
+  <section
+    class="outdoor-courses section beige-bg flex flex-col gap-8"
+    id="outdoor-courses"
+  >
+    <h2 class="text-h2 font-semibold text-center">Outdoor Courses</h2>
+
+    <Card
+      image="/media/images/battleship-crux.jpg"
+      imageAlt="A rock climber resting half way up the route, navigating her way to the finish at the top of the wall."
+      classes=""
+      title="Learn to Belay"
+      duration="6 Hours"
+      age="Ages 16+"
+      price="£60/pp"
+    >
+      <p>
+        This course delivers all the essential skills when climbing with ropes.
+        We'll teach top & bottom roping, knot tying and more on this action
+        packed day out!
+      </p>
+      <a href="/courses/learn-to-belay" class="btn">See More</a>
+    </Card>
+    <Card
+      image="/media/images/bonsai-demo.jpg"
+      imageAlt="Instructor demonstrates figure-8 knot to two attentive climbers at cliff face, which is used to tie into the harness."
+      classes=""
+      title="Private Guiding"
+      duration="6 Hours"
+      age="Ages 7+"
+      price="From £240"
+    >
+      <p>
+        Our private guiding days are designed for you to have as much enjoyment,
+        whilst pushing your climbing to the next grade. You’ll receive bespoke
+        tuition and have plenty of time developing your climbing skills.
+      </p>
+      <a href="/courses/private-guiding" class="btn">See More</a>
+    </Card>
+  </section>
+
+  <!-- <section
+    class="indoor-courses blue-theme section flex flex-col gap-8"
+    id="indoor-courses"
+  >
+    <h2 class="text-h2 font-semibold text-center">Indoor Courses</h2>
+
+    <Card
+      image="/media/images/waterbabe-cave.jpg"
+      imageAlt="The coach demonstrates climbing technique on a steep bouldering wall to other climbers."
+      classes=""
+      title="Bouldering Technique Workshop"
+      duration="90 Minutes"
+      age="Adults"
+      price="£60/pp"
+    >
+      <p>Wa</p>
+      <a href="/courses/bouldering-coaching" class="btn-pri">See More</a>
+    </Card>
+
+    <Card
+      image="/media/images/kids-club-proj.jpg"
+      imageAlt="Smiling girl in reaches for colorful climbing holds on indoor kids wall with varied routes for different skill levels."
+      classes=""
+      title="Kids Club"
+      duration="90 Minutes"
+      age="10-16 Years"
+      price="£60/pp"
+    >
+      <p>
+        This course delivers all the essential skills when climbing with ropes.
+        We'll teach top & bottom roping, knot tying and more on this action
+        packed day out!
+      </p>
+      <a href="/courses/kids-club" class="btn-pri">See More</a>
+    </Card>
+  </section> -->
+</Frame>

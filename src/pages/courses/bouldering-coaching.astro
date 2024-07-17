@@ -1,0 +1,160 @@
+---
+import Frame from "../../layouts/Frame.astro";
+import Section from "@components/section/Section.astro";
+import HeroSection from "@components/section/HeroSection.astro";
+
+import { FaClock as Clock, FaCalendarAlt as Calendar } from "react-icons/fa";
+import {
+  FaLocationDot as location,
+  FaChildReaching as Child,
+} from "react-icons/fa6";
+
+import Date from "@components/course-page/Course-date.astro";
+import Spec from "@components/Spec.astro";
+import Column from "@components/section/Column.astro";
+import Event from "@components/booking/Event.astro";
+import Upcoming from "@components/booking/Upcoming.astro";
+import Accordian from "@components/accordian/Accordian.astro";
+import Qa from "@components/accordian/Qa.astro";
+---
+
+<Frame
+  title="Bouldering Coaching - Southside Climbing - Outdoor Course"
+  metaTitle="Beginners Outdoor Rock Climbing Class in Dorset"
+  description=`Master the rock climbing basics at Portland or Swanage. Our instructors will teach you the rope safety skills, such as belaying, knot tying and using a harness.`
+>
+  <HeroSection
+    image="/media/images/battleship-edge.jpg"
+    imageAlt="A rock climber in a helmet and harness scales a cliff using ropes, demonstrating proper technique in an outdoor setting."
+    classes="hero-theme"
+  >
+    <h1 class="text-h1">
+      Bouldering <span class="text-bumble">Coaching</span>
+    </h1>
+    <ul class="spec">
+      <li><Clock /><span>6 Hours</span></li>
+      <li><Child /><span>Ages 18 & Over</span></li>
+    </ul>
+    <p class="text-lead">
+      This course offer an action packed day of climbing on the Jurassic Coast.
+      We'll teach you all the essential skills, from belaying, to tying into
+      your harness.
+    </p>
+  </HeroSection>
+
+  <Upcoming title="Course Dates">
+    <!-- <Event
+      title="18th May 2024"
+      time="09:30 - 15:30"
+      place="Portland"
+      price="£55/pp"
+      link="https://square.link/u/gM9Mff9G"
+    /> -->
+    <Event
+      title="1st June 2024"
+      time="09:30 - 15:30"
+      place="Swanage"
+      price="£55/pp"
+      link="https://square.link/u/a778hE6l"
+      image="/media/images/bonsai-lowering.jpg"
+      imageAlt=""
+    />
+  </Upcoming>
+  <Section
+    image="/media/images/battleship-belay-demo.jpg"
+    imageAlt="A rock climber in a helmet and harness scales a cliff using ropes, demonstrating proper technique in an outdoor setting."
+    classes="blue-theme mob-img-span"
+  >
+    <h2 class="text-h2">What you'll learn</h2>
+    <p>
+      We'll teach you the essential skills to climbing on a rope. Throughout
+      this course, we'll cover:
+    </p>
+    <ul class="text-h6 list-disc pl-6">
+      <li>Fit a harness</li>
+      <li>Tie into your harness</li>
+      <li>Belay with a range of devices</li>
+      <li>Climb on Limestone</li>
+      <li>Use a guidebook</li>
+    </ul>
+  </Section>
+  <Section
+    image="/media/images/cuttings-equipment.jpg"
+    imageAlt="A climbing helmet, rock shoes and a harness placed, which are suplied for the course."
+    classes="section-reverse image-portrait"
+  >
+    <h2 class="text-h3">What's Supplied:</h2>
+    <p>
+      Throughout the course, you’ll learn to use a range of equipment. We
+      provide all the essential equipment throughout the day, and you’ll be
+      kitted up with:
+    </p>
+    <ul class="list-disc pl-6">
+      <li>Helmets</li>
+      <li>Harnesses</li>
+      <li>Climbing Shoes</li>
+    </ul>
+  </Section>
+  <Section
+    image="/media/images/starting-battleship.jpg"
+    imageAlt="A rock climber in a helmet and harness scales a cliff using ropes, demonstrating proper technique in an outdoor setting."
+    classes="blue-theme mob-img-span image-portrait"
+  >
+    <p>
+      We take pride in offering the great quality climbing courses, whilst being
+      mindful of the locals and the climbing community. We usually only run
+      climbing sessions for in groups of no more than 6 people, to avoid
+      overcrowding at the crags and car parks. We feel that this gives each
+      participant plenty of time of tuition, and to climb!
+    </p>
+  </Section>
+
+  <Accordian classes="">
+    <Qa question="Where will I meet my instructor?">
+      We will send you an exact location once we receive a good forecast. We’ll
+      get in touch a couple of days before your course.
+    </Qa>
+    <Qa question="What are the requirements?">
+      All participants must be able fit enough to walk 2km and climb a ladder.
+      The size requirments are as follows:
+      <br />
+      Waist: 59cm - 103cm
+      <br />
+      Thigh: 43cm - 65cm
+      <br />
+      Head: 50cm - 61cm
+      <br />
+      You can see all the booking requirements <a
+        href="/booking-terms"
+        class="underline">here</a
+      >.
+    </Qa>
+    <Qa question="Can I bring a spectator?">
+      As spectators would need to also wear a helmet, we aren't able to offer
+      spectator places on this course due to equipment limitations.
+    </Qa>
+    <Qa question="What happens if the weather is too poor to climb?">
+      Once we have confirmed that the forecast is too wet for the session, we
+      will let you know as soon as possible. If the course is cancelled, then
+      you will recieve a full refund.
+    </Qa>
+  </Accordian>
+</Frame>
+
+<style lang="scss" is:global>
+  .dates {
+    h2 {
+      margin-bottom: 0.5rem;
+      @media (min-width: 768px) {
+        margin-bottom: 1rem;
+      }
+    }
+  }
+
+  .details {
+    position: fixed;
+    top: 0;
+    left: 0;
+    font-size: 3rem;
+  }
+</style>

@@ -1,0 +1,11 @@
+---
+const { classes } = Astro.props;
+---
+
+<section class=`section blocked ${classes && classes}`>
+  <div class="section-layout">
+    <div class="content">
+      <slot />
+    </div>
+  </div>
+</section>

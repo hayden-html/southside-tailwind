@@ -1,13 +1,13 @@
-@import "../node_modules/bootstrap/scss/functions";
-// 3. Include remainder of required Bootstrap stylesheets (including any separate color mode stylesheets)
-@import "../node_modules/bootstrap/scss/variables";
-@import "../node_modules/bootstrap/scss/variables-dark";
-// 5. Include remainder of required parts
-@import "../node_modules/bootstrap/scss/maps";
-@import "../node_modules/bootstrap/scss/mixins";
-@import "../node_modules/bootstrap/scss/root";
-@import "../node_modules/bootstrap/scss/reboot";
-@import "../node_modules/bootstrap/scss/_type";
+// @import "../node_modules/bootstrap/scss/functions";
+// // 3. Include remainder of required Bootstrap stylesheets (including any separate color mode stylesheets)
+// @import "../node_modules/bootstrap/scss/variables";
+// @import "../node_modules/bootstrap/scss/variables-dark";
+// // 5. Include remainder of required parts
+// @import "../node_modules/bootstrap/scss/maps";
+// @import "../node_modules/bootstrap/scss/mixins";
+// @import "../node_modules/bootstrap/scss/root";
+// @import "../node_modules/bootstrap/scss/reboot";
+// @import "../node_modules/bootstrap/scss/_type";
 
 @tailwind base;
 @tailwind components;
@@ -17,6 +17,12 @@ body {
     margin: 0;
     font-family: 'Mulish Variable', sans-serif;
     // min-width: 320px;
+
+}
+
+body {
+    // max-width: 100dvw;
+    min-height: 100vh !important;
 }
 
 header {
@@ -29,12 +35,13 @@ header {
 // }
 
 
-p {
-    font-size: 18px;
+p,
+ul {
+    font-size: 1.125rem;
     // white-space: wrap;
 
     @media (max-width: 768px) {
-        font-size: 16px;
+        font-size: 1rem;
     }
 }
 
@@ -73,4 +80,29 @@ p {
         display: none;
     }
 
+}
+
+.beige-bg {
+    background-color: #f5f5f5;
+}
+
+.ticket {
+    rotate: -45deg;
+}
+
+.spec {
+    font-size: 1.1rem;
+    display: flex;
+    gap: .75rem;
+
+    li {
+        display: flex;
+        align-items: center;
+        gap: .25em;
+    }
+
+    svg {
+        color: #0055b3;
+
+    }
 }

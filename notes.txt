@@ -1,0 +1,20 @@
+don't set global font sizes as it prevents inheriting
+
+icons shouln't have font sizes?
+
+section has been over used, section-layout should be seperate
+
+change image portrait
+
+---
+
+check each page has the following:
+
+meta - title, meta-title, decription, open-graph
+
+
+---
+
+phase 2:
+
+all images to use Image, quality = 100, size image 1.3x (round up) displayed size to regain quality, also use sizes. see hayden Image for good css example

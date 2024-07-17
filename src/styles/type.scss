@@ -1,23 +1,41 @@
-//local fonts
-
-@font-face {
-    font-family: 'Pandore', sans-serif;
-    src: url('/fonts/pandore.woff2') format('woff2'), url('/fonts/pandore.woff') format('woff');
-    font-display: swap;
+.h1 {
+    font-size: clamp(2rem, 2.75vw + 1rem, 4rem);
 }
 
-.head-1 {
-    // font-size: calc(.1rem + 3vw);
-    font-size: calc(2rem + 1vw);
-    margin-bottom: .1em;
-
-    // @media(min-width: 640) {
-    //     font-size: clamp(1.5rem, 1.25rem + 3vw, 4.5rem);
-    // }
-
+.h2 {
+    font-size: clamp(1.8rem, 1rem + 2.25vw, 3.1748rem);
 }
 
-.head-2 {
-    font-family: 'Mulish Variable', sans-serif;
-    font-weight: 700 !important;
+.h3 {
+    font-size: clamp(1.6rem, 1rem + 1.75vw, 2.5198rem);
+}
+
+.h4 {
+    font-size: clamp(1.4rem, 1rem + 1.25vw, 2rem);
+}
+
+.h5 {
+    font-size: clamp(1.2rem, 1rem + .75vw, 1.5874rem);
+}
+
+.lead {
+    font-size: clamp(1.125rem, 1rem + .5vw, 1.35rem);
+}
+
+.h6 {
+    font-size: clamp(1rem, 1rem + .25vw, 1.25rem);
+}
+
+.small {
+    font-size: clamp(.8rem, .8rem + .125vw, 1rem);
+}
+
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+.lead {
+    line-height: 1.2;
 }

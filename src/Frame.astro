@@ -1,15 +1,15 @@
 ---
-import BaseHead from "@components/frame/Head.astro";
+import BaseHead from "@components/frame/head/Head.astro";
 import Footer from "@components/frame/Footer.astro";
-import Nav from "@components/frame/Nav.astro";
+import Nav from "@components/frame/nav/Nav.astro";
 
-const { title, description } = Astro.props;
+const { title, description, metaTitle } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
-    <BaseHead title={title} description={description} />
+    <BaseHead title={title} metaTitle={metaTitle} description={description} />
     <meta name="ExtraHead" />
     <link rel="sitemap" href="/sitemap-index.xml" />
   </head>

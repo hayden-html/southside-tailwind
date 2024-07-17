@@ -1,48 +1,37 @@
 ---
-import { Image } from "astro:assets";
-
 import { FaLocationDot, FaChildReaching } from "react-icons/fa6";
 import { FaCalendarAlt, FaClock } from "react-icons/fa";
 import { BsTicketFill } from "react-icons/bs";
 
-import Button from "@components/buttons/Button.astro";
-
-const {
-  classes,
-  image,
-  imageAlt,
-  title,
-  heading,
-  date,
-  time,
-  place,
-  age,
-  price,
-  href,
-} = Astro.props;
+const { classes, image, imageAlt, title, date, time, place, age, price, href } =
+  Astro.props;
 ---
 
 <div class={`course flex ${classes}`}>
-  <Image
-    src={image}
-    width="350"
-    quality="max"
-    alt={imageAlt || title}
-    class="course-img"
-  />
+  {image && <img src={image} alt={imageAlt || title} class="course-img" />}
   <div class="course-dets">
-    <h3 class="h5 font-semibold font-noto-sans">{title}</h3>
+    <h3 class="text-h5 mb-2 font-semibold font-noto-sans">{title}</h3>
     <ul class="font-medium h5 mb-0">
-      <li>
-        <FaCalendarAlt className="stat-icon" />{date}
-      </li>
+      {
+        date && (
+          <li>
+            <FaCalendarAlt className="stat-icon" />
+            {date}
+          </li>
+        )
+      }
       <li><FaClock className="stat-icon clock" />{time}</li>
       <li>
         <FaLocationDot className="stat-icon" />{place}
       </li>
-      <li>
-        <FaChildReaching className="stat-icon" />Ages {age}+
-      </li>
+      {
+        age && (
+          <li>
+            <FaChildReaching className="stat-icon" />
+            Ages {age}+
+          </li>
+        )
+      }
       <li><BsTicketFill className="stat-icon ticket" />{price}</li>
     </ul>
     <a href={href} class="btn-outline-atlantic">Book Now</a>
@@ -51,16 +40,12 @@ const {
 <style lang="scss">
   .course {
     background-color: white;
-    border-radius: 10px;
+    box-shadow: 5px 5px 15px rgb(179, 179, 179);
     overflow: hidden;
     flex-shrink: 0;
     width: fit-content;
-    box-shadow: 5px 5px 15px rgb(179, 179, 179);
     align-self: center;
-    // place-content: ;
-    margin: 0.5rem 2rem 1rem;
-
-    margin: 1rem auto;
+    margin: 1rem 0.75rem;
 
     &-img {
       width: clamp(1px, 50%, 275px);
@@ -74,11 +59,13 @@ const {
     &-dets {
       display: flex;
       flex-direction: column;
-      padding: 0.5rem 1.5rem 0 20px;
+      padding: 0.5rem 1.5rem 0.5rem 20px;
 
       ul {
         font-size: 1.1rem;
         padding-left: 0;
+        margin: 0.5rem 0;
+
         li {
           display: flex;
           align-self: center;

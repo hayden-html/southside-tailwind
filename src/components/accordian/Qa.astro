@@ -1,0 +1,97 @@
+---
+import { FaChevronRight } from "react-icons/fa";
+
+const { question } = Astro.props;
+
+export interface Props {
+  question: string;
+}
+---
+
+<div class="qa">
+  <div class="question flex items-center md:text-lead">
+    <p class="question-text font-semibold text-h5">
+      {question}
+    </p>
+    <FaChevronRight className="question-arr" />
+  </div>
+  <div class="answer-container">
+    <p class="answer text-h6">
+      <slot />
+    </p>
+  </div>
+</div>
+
+<style lang="scss">
+  .qa {
+    background-color: rgb(255, 255, 255);
+    overflow: hidden;
+    color: rgb(68, 68, 68);
+  }
+
+  .question {
+    cursor: pointer;
+    padding: 0.75rem 1rem 1rem;
+    max-height: fit-content;
+    transition: 400ms;
+
+    p {
+      padding-right: 16px;
+    }
+
+    &-arr {
+      min-width: 30px;
+      height: auto;
+      transition: 150ms;
+      margin: auto 0 auto auto;
+      align-self: center;
+    }
+  }
+
+  .active {
+    background-color: #fbd40f;
+    transition: 300ms;
+  }
+
+  .active {
+    .question-arr {
+      rotate: 90deg;
+    }
+
+    .answer-container {
+      max-height: fit-content;
+    }
+  }
+
+  .answer-container {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.2s ease-out;
+  }
+
+  .answer {
+    padding: 10px 18px;
+    background-color: white;
+    line-height: 1.5;
+    color: #343434;
+  }
+</style>
+
+<script>
+  const questions = document.querySelectorAll(".question");
+
+  questions.forEach((question) => {
+    question.addEventListener("click", () => {
+      question.classList.toggle("active");
+      const answerContainer = question.nextElementSibling;
+      const answer = answerContainer.querySelector(".answer");
+      console.log(answer);
+
+      if (answerContainer.style.maxHeight) {
+        answerContainer.style.maxHeight = null;
+      } else {
+        answerContainer.style.maxHeight = answer.scrollHeight + "px";
+      }
+    });
+  });
+</script>

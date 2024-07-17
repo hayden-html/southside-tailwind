@@ -1,52 +1,57 @@
 ---
 import Frame from "../layouts/Frame.astro";
-import Section from "@components/page/Section.astro";
-import Button from "@components/buttons/Button.astro";
-import Heading from "@components/tags/Heading.astro";
+import Section from "@components/section/Section.astro";
+import HeroSection from "@components/section/HeroSection.astro";
+// import Section2 from "@components/section/Section-2.astro";
+import Column from "@components/section/Column.astro";
+import { Image } from "astro:assets";
 
-import battleship from "@images/belaying-seb.jpg";
-import haydenHero from "@images/hayden-proj.jpg";
-import peaks from "@images/hayden-peaks.jpg";
+import hayden from "../images/hayden-battleship.jpg";
 ---
 
 <Frame
-  title="About Southside Climbing - Learn about our story and ethos!"
-  desc="Desecritption"
+  title="About | Southside Climbing"
+  metaTitle="Southside Climbing - Learn about our story and ethos!"
+  desc="About Descritption"
 >
-  <Section
-    image={peaks}
-    imageAlt="Hayden focusing on a climber as he is belaying, on a sunny at Portland"
-    classes="hero-theme"
+  <HeroSection
+    image="/media/images/hayden-peaks.jpg"
+    imageAlt="Hayden, the owner of Southside Climbing, takes in the breathtaking view after reaching the top of a boulder in the scenic Peak District, England, exemplifying the sense of accomplishment and connection with nature that rock climbing offers."
+    classes="image-portrait"
   >
-    <Heading headingLevel="1">
+    <h1 class="text-h1">
       About <span class="text-bumble">US</span>
-    </Heading>
-    <p>
+    </h1>
+    <p class="text-lead">
       Hayden created Southside Climbing in 2021, as soon as he qualified as a
       Rock Climbing Instructor. He loves sharing his passion of climbing with
       others and aims to make the sport more accessible to beginners.
     </p>
-  </Section>
+  </HeroSection>
+
   <Section
-    image={haydenHero}
-    imageAlt="Hayden focusing on a climber as he is belaying, on a sunny at Portland"
-    classes=""
+    image="/media/images/hayden-proj.jpg"
+    imageAlt="Hayden, owner of Southside Climbing, demonstrates dynamic bouldering technique on a colorful indoor climbing wall at the center where he first learned to climb, showcasing his skill and the fun, energetic atmosphere of indoor climbing gyms."
+    classes="image-portrait"
   >
-    <h3 class="h2 m-0">Hayden's Background</h3>
+    <h2 class="text-h2 m-0">Hayden's Background</h2>
     <p>
       When Hayden was 16, he wasn't the sporty type, until he discovered his
-      local bouldering wall. <span class="hidden md:inline"
-        >Then once he was old enough, at 18, he became an apprentice activity
-        instructor. He's not stopped instructing for the last 6 years.
-      </span>
+      local bouldering wall. Then once he was old enough, at 18, he became an
+      apprentice activity instructor. He's not stopped instructing for the last
+      6 years.
     </p>
   </Section>
-  <Section
-    image={battleship}
-    imageAlt="Hayden focusing on a climber as he is belaying, on a sunny at Portland"
-    classes="blue-theme blocked"
-  >
-    <h3 class="h2 m-0">Our Ethos</h3>
+
+  <Column classes="blue-theme">
+    <Image
+      src={hayden}
+      alt="Hayden belaying a climber on a sunny day at a picturesque crag in Portland, Dorset, demonstrating proper belaying technique and the camaraderie of outdoor rock climbing."
+      width={700}
+      quality={100}
+      class="md:max-w-[500px] mx-auto"
+    />
+    <h2 class="text-h2 m-0 my-2">Our Ethos</h2>
     <p class="mb-2">
       The courses at Southside Climbing are run with the community in mind. Each
       session has a small ratio of 6 climbers per instructor, this is to ensure
@@ -67,13 +72,13 @@ import peaks from "@images/hayden-peaks.jpg";
       instructor adapts to different learning styles and physical abilities,
       ensuring each climber can progress at their own pace.
     </p>
-  </Section>
+  </Column>
   <Section
-    image={battleship}
-    imageAlt="Hayden focusing on a climber as he is belaying, on a sunny at Portland"
+    image="/media/images/belaying-battleship.jpg"
+    imageAlt="A rock climber wearing an orange helmet and harness stands at the base of a cliff, belaying their climbing partner who is out of view above. The belayer's stance and grip on the rope convey focus and readiness to ensure their partner's safety while climbing the rugged limestone face, a popular outdoor recreation destination near Portland."
     classes=""
   >
-    <h3 class="h2 m-0">Recruitment</h3>
+    <h2 class="text-h2 m-0">Recruitment</h2>
     <p class="">
       We're always seeking freelance instructors to join our team. Whether
       you're interested in training to become an instructor or looking for work

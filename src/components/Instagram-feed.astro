@@ -1,0 +1,80 @@
+---
+const { classes, images = [] } = Astro.props;
+
+import { FaInstagram } from "react-icons/fa";
+---
+
+<section class={"p-5" + classes}>
+  <div class="posts">
+    {
+      images.map((image, index) => {
+        // Return JSX elements for each review, using template literals to insert data
+        return (
+          <a class={`post`} href="https://www.instagram.com/southsideclimbing/">
+            <img src={image.src} alt={image.alt} class="post-image" />
+            {index == images.length - 1 && (
+              <FaInstagram className="icon text-white text-4xl" />
+            )}
+          </a>
+        );
+      })
+    }
+  </div>
+</section>
+
+<style lang="scss">
+  .posts {
+    display: grid;
+    gap: 16px;
+    justify-content: center;
+  }
+
+  .posts > :nth-child(1) {
+    @media (min-width: 768px) {
+      display: none;
+    }
+  }
+
+  .post {
+    position: relative;
+    max-width: min-content;
+    &-image {
+      aspect-ratio: 1 / 1 !important;
+      object-fit: cover;
+    }
+  }
+
+  .icon {
+    position: absolute;
+    margin: 10px;
+    bottom: 0;
+    right: 0;
+  }
+
+  @media (max-width: 767.99px) {
+    .posts {
+      grid-template-columns: repeat(2, auto);
+      grid-template-rows: repeat(2, auto);
+    }
+    .post {
+      // max-width: min-content;
+      &-image {
+        min-width: 150px;
+        width: 200px;
+        max-width: 30dvw;
+      }
+    }
+  }
+
+  @media (min-width: 768px) {
+    .posts {
+      grid-template-columns: repeat(3, auto);
+    }
+    .post,
+    .post-image {
+      min-width: 150px;
+      width: 375px;
+      max-width: 25dvw;
+    }
+  }
+</style>

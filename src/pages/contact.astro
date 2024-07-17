@@ -1,32 +1,91 @@
 ---
 import Frame from "../layouts/Frame.astro";
-import Section from "@components/page/Section.astro";
-import Form from "@components/ContactForm.jsx";
-// import Web from "@components/ContactForm.jsx";
-import Heading from "@components/tags/Heading.astro";
+import Section from "@components/section/Section.astro";
+import HeroSection from "@components/section/HeroSection.astro";
+import Form from "@components/ContactForm.astro";
+import Instagram from "@components/Instagram-feed.astro";
 
-import hero from "@images/battleship-block.jpg";
-import battleship from "@images/belaying-seb.jpg";
+import Accordian from "@components/accordian/Accordian.astro";
+import Qa from "@components/accordian/Qa.astro";
+
+import { FaInstagram, FaRegEnvelope } from "react-icons/fa";
+
+const instaPosts = [
+  {
+    src: "/media/images/starting-battleship.jpg",
+    alt: "The instructor passing karabiners and gear to a participant who's placing them on his harness.",
+  },
+  {
+    src: "/media/images/bonsai-lowering.jpg",
+    alt: "A rock climber being lowered from the rock face using ropes, demonstrating proper technique in an outdoor setting.",
+  },
+  {
+    src: "/media/images/battleship-crux.jpg",
+    alt: "A rock climber resting half way up the route, navigating her way to the finish at the top of the wall.",
+  },
+  {
+    src: "/media/images/battleship-edge.jpg",
+    alt: "A young man who is learning how to climbing on the Jurassic Coast using ropes.",
+  },
+];
 ---
 
-<Frame title="Southside Climbing" desc="Desecritption">
-  <Section image={hero} imageAlt="" classes="hero-theme">
-    <Heading headingLevel="1">
+<Frame
+  title="Contact | Southside Climbing"
+  metaTitle="Contact Us"
+  desc="Desecritption"
+>
+  <HeroSection
+    image="/media/images/battleship-block.jpg"
+    imageAlt="Rock climbers top-roping the large fallen block using ropes and gear, navigating the challenging terrain."
+    classes="section hero-theme"
+  >
+    <h1 class="h1 mb-0">
       Contact <span class="text-bumble">Us</span>
-    </Heading>
-    <p>
+    </h1>
+    <p class="text-lead">
       If you have any questions, please don't hesitate to get in touch. You can
       send us an email or fill out the contact form below. We typically respond
       to emails within 2 working days.
     </p>
-  </Section>
+  </HeroSection>
 
-  <div class="section blue-theme">
+  <div class="section" id="contact">
     <div class="section-layout">
-      <div class="contact-dets w-1/2">
-        <h2 class="h1">Send us a Message</h2>
+      <div class="contact-dets text-left p-5 md:p-0">
+        <h2 class="h3 font-bold w-fit mb-4 md:mb-10">Send us a Message</h2>
+        <div class="contact-email h5 mb-4 md:mb-10">
+          <h3 class="mb-2 font-semibold">Email:</h3>
+          <a
+            href="mailto:hayden@southsideclimbing.co.uk"
+            class="email h6 w-fit flex items-center md:flex-rox gap-2"
+            ><FaRegEnvelope className="h4 text-ikea" /><span
+              >hayden@southsideclimbing.co.uk</span
+            ></a
+          >
+        </div>
+        <div class="contact-insta h5 border-">
+          <h4 class="mb-2 border-c font-semibold">Or via Instagram:</h4>
+          <a
+            href="https://www.instagram.com/southsideclimbing/"
+            class="email h6 w-fit flex items-center md:flex-rox gap-2"
+            ><FaInstagram className="h3 text-ikea" /><span
+              >@southsideclimbing</span
+            >
+          </a>
+        </div>
       </div>
-      <Form />
+      <Form classes="border-ikea border-2 rounded-md" />
     </div>
   </div>
+
+  <Accordian classes="blue-theme">
+    <Qa question="Do parents need to be present during  the session?">
+      No, Parents and guardians can drop off and leave the children for the
+      duration of the session. Parents can stay and watch.
+    </Qa>
+  </Accordian>
+
+  <Instagram classes="" images={instaPosts} />
+  <!-- <Test classes="m-5 p-5 pb-1 border-ikea border-2 rounded-md" /> -->
 </Frame>

@@ -1,0 +1,18 @@
+---
+import { FaClock as clock, FaCalendarAlt as calendar } from "react-icons/fa";
+import {
+  FaLocationDot as location,
+  FaChildReaching as child,
+} from "react-icons/fa6";
+import { BsTicketFill as ticket } from "react-icons/bs";
+
+import type { HTMLTag, Polymorphic } from "astro/types";
+
+type Props<icon extends HTMLTag> = Polymorphic<{ as: icon }>;
+
+const { as: icon, text, classes } = Astro.props;
+---
+
+<li class=`flex ${classes && classes}`>
+  <icon></icon><span>{text}</span>
+</li>

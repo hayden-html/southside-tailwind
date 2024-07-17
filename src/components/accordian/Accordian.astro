@@ -1,0 +1,25 @@
+---
+const { classes } = Astro.props;
+---
+
+<section class={"qa section " + classes}>
+  <div class="questions overflow-clip rounded-md">
+    <slot />
+  </div>
+</section>
+
+<style lang="scss">
+  .qa {
+    padding: 2rem 1rem !important;
+  }
+
+  .questions {
+    box-shadow: 0px 5px 10px #9f9f9f;
+    margin: 0 auto;
+    // max-width: calc(85% + 20px);
+
+    @media (min-width: 768px) {
+      max-width: 1080px;
+    }
+  }
+</style>

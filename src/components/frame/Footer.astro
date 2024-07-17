@@ -1,24 +1,34 @@
 ---
 import Socials from "@components/Socials.astro";
+
+const year = new Date().getFullYear();
 ---
 
 <footer class="footer">
-  <ul class="links">
-    <li><a href="/privacy-policy.pdf" class="privacy">Privacy Policy</a></li>
-    <li><a href="" class="cookie">Cookie Settings</a></li>
-  </ul>
-  <Socials
-    classes={"links-socials flex gap-3 items-end text-4xl ml-auto text-white"}
-  />
+  <div class="flex justify-between">
+    <ul class="links my-auto">
+      <li><a href="/privacy-policy.pdf" class="privacy">Privacy Policy</a></li>
+      <li><a href="" class="cookie">Cookie Settings</a></li>
+    </ul>
+    <div class="mt-auto flex flex-col items-end">
+      <Socials
+        classes={"links-socials flex gap-3 items-end text-4xl text-white"}
+      />
+      <p class="text-white text-small mt-3 text-right hidden md:block">
+        © {year} - Southside Climbing, All rights reserved
+      </p>
+    </div>
+  </div>
+  <p class="text-white text-small mt-3 text-right md:hidden">
+    © {year} - Southside Climbing, All rights reserved
+  </p>
 </footer>
 
 <style lang="scss">
   .footer {
     background-color: #003f82;
-    display: flex;
     justify-content: space-between;
-    padding: calc(1rem + 1vw);
-    margin-top: auto;
+    padding: 1rem calc(1rem + 1vw);
 
     .links {
       list-style: none;

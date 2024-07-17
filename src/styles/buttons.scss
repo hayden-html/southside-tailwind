@@ -3,7 +3,7 @@
     font-family: "Noto Sans JP Variable", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     font-weight: 800;
     width: fit-content;
-    padding: .5rem .75rem .75rem;
+    padding: .25em .5em .3em;
     transition: color .3s;
     transition: background-color .3s;
     color: #fefefe;
@@ -47,7 +47,8 @@
 
 }
 
-.btn {
+.btn,
+.btn-pri {
     @include button;
 }
 
@@ -77,47 +78,19 @@
     }
 }
 
-.hero-theme {
-    .btn {
-        @include button;
-        background-color: white;
-        color: #004FA6;
-        box-shadow: 0.2em 0.2em #0d5097;
+.blue-theme .btn {
+    @include button;
+    color: #007afc;
+    background-color: white;
+    box-shadow: 0.2em 0.2em 8px rgba(0, 0, 0, 0.096);
 
-        &:hover {
-            background-color: #fbd40f;
-            color: #004fa6;
-        }
-
-        &:focus {
-            box-shadow: 0.2em 0.2em #ff7babe8;
-            transition: 0.2s;
-        }
-
-        &:active {
-            box-shadow: 0.25em 0.25em 0 #03397280;
-            transition: 0.2s;
-            color: white;
-            background-color: #fbd40f;
-        }
-    }
-}
-
-.blue-theme {
-    .btn {
-        @include button;
+    &:hover {
+        background-color: #fbd40f;
         color: #007afc;
-        background-color: white;
-        box-shadow: 0.2em 0.2em 8px rgba(0, 0, 0, 0.096);
+    }
 
-        &:hover {
-            background-color: #fbd40f;
-            color: #007afc;
-        }
-
-        &:active {
-            color: white;
-            background-color: #fbd40f;
-        }
+    &:active {
+        color: white;
+        background-color: #fbd40f;
     }
 }

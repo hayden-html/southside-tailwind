@@ -1,12 +1,11 @@
 ---
-const { title, heading, classes, reviews = [] } = Astro.props;
-const HeadingLevel = heading || "h2";
+const { title, classes, reviews = [] } = Astro.props;
 import { LuChevronLeft } from "react-icons/lu";
 import { LuChevronRight } from "react-icons/lu";
 ---
 
 <section class=`testimonials ${classes}`>
-  {title && <HeadingLevel class="header head-2 h2">{title}</HeadingLevel>}
+  {title && <h2 class="header text-h3 font-noto-sans font-medium">{title}</h2>}
   <div id="testimonialCarousel" class="carousel">
     <!-- Testimonial items here -->
     <div class="testimonial-wrapper">
@@ -18,8 +17,8 @@ import { LuChevronRight } from "react-icons/lu";
               class={`testimonial-item *: ${index === 0 ? "active" : ""}`}
               data-index={index}
             >
-              <p class="font-cursive font-normal">"{review.text}"</p>
-              <cite class="ml-auto">{review.author}</cite>
+              <p class="font-cursive font-normal p">"{review.text}"</p>
+              <cite class="ml-auto p">{review.author}</cite>
             </div>
           );
         })
@@ -30,17 +29,34 @@ import { LuChevronRight } from "react-icons/lu";
       <LuChevronLeft id="prev" className="carousel-btn prev-btn text-black" />
       <!-- Navigation bubbles container -->
       <div class="carousel-nav">
-        <span class="nav-dot active" data-slide="0"></span>
-        <span class="nav-dot" data-slide="1"></span>
-        <span class="nav-dot" data-slide="2"></span>
-        <!-- Add more dots as needed -->
+        {
+          reviews.map((review, index) => {
+            return (
+              <span
+                class={"nav-dot " + (index == 0 && "active")}
+                data-slide={index}
+              />
+            );
+          })
+        }
       </div>
       <LuChevronRight id="next" className="carousel-btn next-btn text-black" />
     </div>
   </div>
 </section>
 
-<script lang="js">
+<script is:inline>
+  var supportsPassive = false;
+  try {
+    var opts = Object.defineProperty({}, "passive", {
+      get: function () {
+        supportsPassive = true;
+      },
+    });
+    window.addEventListener("testPassive", null, opts);
+    window.removeEventListener("testPassive", null, opts);
+  } catch (error) {}
+
   document.addEventListener("DOMContentLoaded", () => {
     let currentIndex = 0;
     const wrapper = document.querySelector(".testimonial-wrapper");
@@ -50,6 +66,9 @@ import { LuChevronRight } from "react-icons/lu";
     let startX = 0;
     let currentX = 0;
     let moving = false;
+
+    // const carousel = document.querySelector(".carousel");
+    // console.log(carousel.offsetWidth);
 
     // Function to get the carousel's width
     const getCarouselWidth = () =>
@@ -104,18 +123,26 @@ import { LuChevronRight } from "react-icons/lu";
     };
 
     // Add event listeners for swipe actions
-    wrapper.addEventListener("touchstart", (e) => {
-      startX = e.touches[0].clientX;
-      moving = true;
-      wrapper.style.transition = "none";
-    });
+    wrapper.addEventListener(
+      "touchstart",
+      (e) => {
+        startX = e.touches[0].clientX;
+        moving = true;
+        wrapper.style.transition = "none";
+      },
+      supportsPassive ? { passive: true } : false
+    );
 
-    wrapper.addEventListener("touchmove", (e) => {
-      if (!moving) return;
-      currentX = e.touches[0].clientX;
-      const moveX = currentX - startX - currentIndex * getCarouselWidth();
-      setCarouselPosition(moveX, false);
-    });
+    wrapper.addEventListener(
+      "touchmove",
+      (e) => {
+        if (!moving) return;
+        currentX = e.touches[0].clientX;
+        const moveX = currentX - startX - currentIndex * getCarouselWidth();
+        setCarouselPosition(moveX, false);
+      },
+      supportsPassive ? { passive: true } : false
+    );
 
     wrapper.addEventListener("touchend", () => {
       moving = false;
@@ -133,7 +160,7 @@ import { LuChevronRight } from "react-icons/lu";
 
     // Navigation dot clicks for direct access to slides
     dots.forEach((dot) => {
-      dot.addEventListener("click", (e) => {
+      dot.addEventListener("click", () => {
         currentIndex = parseInt(dot.getAttribute("data-slide"));
         setCarouselPosition(-currentIndex * getCarouselWidth());
         updateActiveDot();
@@ -143,7 +170,7 @@ import { LuChevronRight } from "react-icons/lu";
 </script>
 <style lang="scss">
   .testimonials {
-    padding: 1rem 0;
+    padding: 2rem 0;
   }
   .header {
     text-align: center;
@@ -168,8 +195,9 @@ import { LuChevronRight } from "react-icons/lu";
   .testimonial-item {
     flex: 0 0 100%;
     text-align: center;
-    padding: 20px 5vw;
+    padding: 32px 5vw;
     box-sizing: border-box;
+    margin: auto 0;
     /* Ensure each item is tall enough or contains enough content */
     p {
       max-width: 1000px;
@@ -185,7 +213,7 @@ import { LuChevronRight } from "react-icons/lu";
       }
       p {
         max-width: 100%;
-        width: calc(100% - 4rem);
+        width: calc(100% - 1rem);
       }
     }
   }
