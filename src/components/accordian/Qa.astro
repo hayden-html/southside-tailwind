@@ -9,7 +9,10 @@ export interface Props {
 ---
 
 <div class="qa">
-  <div class="question flex items-center md:text-lead">
+  <div
+    class="question flex items-center md:text-lead"
+    onclick="toggleAnswer(this)"
+  >
     <p class="question-text font-semibold text-h5">
       {question}
     </p>
@@ -21,6 +24,31 @@ export interface Props {
     </p>
   </div>
 </div>
+
+<script is:inline>
+  function toggleAnswer(questionElement) {
+    const qa = questionElement.closest(".qa");
+    const answerContainer = qa.querySelector(".answer-container");
+    const answer = answerContainer.querySelector(".answer");
+
+    // Close all other open questions
+    document.querySelectorAll(".qa").forEach((item) => {
+      if (item !== qa && item.classList.contains("active")) {
+        item.classList.remove("active");
+        const container = item.querySelector(".answer-container");
+        container.style.maxHeight = null;
+      }
+    });
+
+    // Toggle the clicked question
+    qa.classList.toggle("active");
+    if (qa.classList.contains("active")) {
+      answerContainer.style.maxHeight = answer.scrollHeight + "px";
+    } else {
+      answerContainer.style.maxHeight = null;
+    }
+  }
+</script>
 
 <style lang="scss">
   .qa {
@@ -51,22 +79,16 @@ export interface Props {
   .active {
     background-color: #fbd40f;
     transition: 300ms;
-  }
 
-  .active {
     .question-arr {
       rotate: 90deg;
-    }
-
-    .answer-container {
-      max-height: fit-content;
     }
   }
 
   .answer-container {
     overflow: hidden;
     max-height: 0;
-    transition: max-height 0.2s ease-out;
+    transition: max-height 0.3s ease-out;
   }
 
   .answer {
@@ -76,22 +98,3 @@ export interface Props {
     color: #343434;
   }
 </style>
-
-<script>
-  const questions = document.querySelectorAll(".question");
-
-  questions.forEach((question) => {
-    question.addEventListener("click", () => {
-      question.classList.toggle("active");
-      const answerContainer = question.nextElementSibling;
-      const answer = answerContainer.querySelector(".answer");
-      console.log(answer);
-
-      if (answerContainer.style.maxHeight) {
-        answerContainer.style.maxHeight = null;
-      } else {
-        answerContainer.style.maxHeight = answer.scrollHeight + "px";
-      }
-    });
-  });
-</script>
