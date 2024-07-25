@@ -9,9 +9,6 @@ export default defineConfig({
   integrations: [tailwind(), react()],
   output: "server",
   adapter: cloudflare({
-    imageService: 'cloudflare'
+    imageService: 'compile'
   }),
-  image: {
-    service: squooshImageService(),
-  },
 });
